@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//browsehappy.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="卮客" />
+
+
+
+<meta name="description" content="安装前准备 首先登陆vps需要执行如下命令更新各种依赖 为防止机器没有安装epel，先安装epel(必须安装)   升级 CentOs 内核 yum -y update 安装 Git yum install git-core">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dropbox + VPS + Incrond+Hexo搭建博客小记">
+<meta property="og:url" content="https://www.zhiiker.com/2017/07/19/%E7%AC%94%E8%AE%B0/2017-07-19.Dropbox%20+%20VPS%20+%20Incrond+Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B0%8F%E8%AE%B0/index.html">
+<meta property="og:site_name" content="卮客杂俎">
+<meta property="og:description" content="安装前准备 首先登陆vps需要执行如下命令更新各种依赖 为防止机器没有安装epel，先安装epel(必须安装)   升级 CentOs 内核 yum -y update 安装 Git yum install git-core">
+<meta property="og:locale">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/2017-07-17-16-56-13.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/2017-07-19-16-21-05.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/2017-07-19-16-24-40.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/2017-07-19-16-29-41.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/2017-07-19-16-34-25.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/2017-07-19-17-20-09.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/2017-07-19-17-56-16.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/2017-07-19-17-56-29.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/b84f46c31486c0689dcb46fe856a3408_hexo-01.png">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/ff716f897db6f52aae3fe00d8a7e6ca5_hexo-04.png">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/5a6545da6f259e0f0ee8a92550861cda_hexo-03.png">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/9ac59c621f8f09f44cf517c55e0bec7d_hexo-02.png">
+<meta property="article:published_time" content="2017-07-19T10:03:23.000Z">
+<meta property="article:modified_time" content="2018-12-08T10:11:43.000Z">
+<meta property="article:author" content="卮客">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Dropbox">
+<meta property="article:tag" content="Incrond">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.liangs.me/bitcron/Notes/_image/2017-07-17-16-56-13.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="卮客杂俎" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/images/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Dropbox + VPS + Incrond+Hexo搭建博客小记 | 卮客杂俎</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579834e01a3c7cec"></script>
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?cb203f30c887d436558853df2a128830";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/images/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">undefined</a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">分类&amp;标签</a></li>
+                        
+                            <li><a target="_blank" rel="noopener" href="https://www.bitcook.org">BitCook</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:&#105;&#109;&#64;&#122;&#104;&#105;&#105;&#107;&#101;&#114;&#46;&#99;&#111;&#109;" title="Email"></a>
+                            
+                                <a class="fa RSS" href="http://www.zhiiker.com/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa GitHub" target="_blank" rel="noopener" href="https://github.com/zhiiker" title="GitHub"></a>
+                            
+                                <a class="fa Quora" target="_blank" rel="noopener" href="https://www.quora.com/profile/Shichao-Liang-1" title="Quora"></a>
+                            
+                                <a class="fa Medium" target="_blank" rel="noopener" href="https://medium.com/@zhiiker" title="Medium"></a>
+                            
+                                <a class="fa Coding" target="_blank" rel="noopener" href="https://dev.tencent.com/u/zhiiker" title="Coding"></a>
+                            
+                                <a class="fa V2EX" target="_blank" rel="noopener" href="https://www.v2ex.com/member/zhiiker" title="V2EX"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" rel="noopener" href="http://weibo.com/tobechaos" title="新浪微博"></a>
+                            
+                                <a class="fa 知乎" target="_blank" rel="noopener" href="https://www.zhihu.com/people/liangshichao" title="知乎"></a>
+                            
+                                <a class="fa 豆瓣" target="_blank" rel="noopener" href="https://www.douban.com/people/tobechaos/" title="豆瓣"></a>
+                            
+                                <a class="fa 简书" target="_blank" rel="noopener" href="http://www.jianshu.com/u/d5add3cb2d34" title="简书"></a>
+                            
+                                <a class="fa SegmentFault" target="_blank" rel="noopener" href="https://segmentfault.com/u/zhiiker" title="SegmentFault"></a>
+                            
+                                <a class="fa 博客园" target="_blank" rel="noopener" href="https://www.cnblogs.com/zhiiker" title="博客园"></a>
+                            
+                                <a class="fa CSDN" target="_blank" rel="noopener" href="http://my.csdn.net/zhiiker" title="CSDN"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" rel="noopener" href="http://music.163.com/#/user/home?id=72587395" title="网易云音乐"></a>
+                            
+                                <a class="fa bilibili" target="_blank" rel="noopener" href="https://space.bilibili.com/953543/" title="bilibili"></a>
+                            
+                                <a class="fa Facebook" target="_blank" rel="noopener" href="https://www.facebook.com/realshichao" title="Facebook"></a>
+                            
+                                <a class="fa Twitter" target="_blank" rel="noopener" href="https://twitter.com/zhiiker" title="Twitter"></a>
+                            
+                                <a class="fa LinkedIn" target="_blank" rel="noopener" href="https://cn.linkedin.com/in/liangshichao" title="LinkedIn"></a>
+                            
+                                <a class="fa QQ" target="_blank" rel="noopener" href="https://images.liangs.me/avatars/qrcode_1521369601487.jpg" title="QQ"></a>
+                            
+                                <a class="fa PayPal" target="_blank" rel="noopener" href="https://paypal.me/realshichao" title="PayPal"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" rel="noopener" href="https://stackoverflow.com/users/4978576/zhiiker" title="StackOverflow"></a>
+                            
+                                <a class="fa reddit" target="_blank" rel="noopener" href="https://www.reddit.com/user/zhiiker/" title="reddit"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU/" rel="tag">CPU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dropbox/" rel="tag">Dropbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gitbub/" rel="tag">Gitbub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ICPC/" rel="tag">ICPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Incrond/" rel="tag">Incrond</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/J2EE/" rel="tag">J2EE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSP/" rel="tag">JSP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/" rel="tag">Oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shadowsocks/" rel="tag">Shadowsocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmd/" rel="tag">cmd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/" rel="tag">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dropbox/" rel="tag">dropbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/incron/" rel="tag">incron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oss/" rel="tag">oss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ossfs/" rel="tag">ossfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/seafile/" rel="tag">seafile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/supervisor/" rel="tag">supervisor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vps/" rel="tag">vps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B9%A6%E9%98%81/" rel="tag">书阁</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%91%E7%9B%98/" rel="tag">云盘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%99%E4%BD%9C/" rel="tag">写作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%AE%E5%AE%A2/" rel="tag">卮客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%AE%E8%A8%80/" rel="tag">卮言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%8C%E4%BD%99/" rel="tag">同余</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%8D%E5%8F%B7/" rel="tag">名号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%8D%E5%AD%97/" rel="tag">名字</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%87%E5%BF%98/" rel="tag">备忘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4/" rel="tag">复制粘贴</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BB%BA%E7%AB%99/" rel="tag">建站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97/" rel="tag">建站日志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/" rel="tag">开机启动</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%8B%E8%AF%95/" rel="tag">测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AB%AF%E5%8F%A3/" rel="tag">端口</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B4%A0%E6%8B%93%E7%BD%91/" rel="tag">素拓网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%84%E8%AE%BA/" rel="tag">评论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6/" rel="tag">读书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B4%A8%E6%95%B0/" rel="tag">质数</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://pages.github.com">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="http://moxfive.xyz">MOxFIVE</a>
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://feigong.tech">非工科技</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">Explorer Developer Innovator Cypherpunk Cosmopolitan Transhumanist Neuroexistentialist Extropist Philosophy-Enthusiast NeuroScience-Fancier me@zkr.pub</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">undefined</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/images/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">undefined</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">分类&amp;标签</a></li>
+                
+                    <li><a target="_blank" rel="noopener" href="https://www.bitcook.org">BitCook</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:&#105;&#109;&#64;&#122;&#104;&#105;&#105;&#107;&#101;&#114;&#46;&#99;&#111;&#109;" title="Email"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="http://www.zhiiker.com/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/zhiiker" title="GitHub"></a>
+                            
+                                <a class="fa Quora" target="_blank" href="https://www.quora.com/profile/Shichao-Liang-1" title="Quora"></a>
+                            
+                                <a class="fa Medium" target="_blank" href="https://medium.com/@zhiiker" title="Medium"></a>
+                            
+                                <a class="fa Coding" target="_blank" href="https://dev.tencent.com/u/zhiiker" title="Coding"></a>
+                            
+                                <a class="fa V2EX" target="_blank" href="https://www.v2ex.com/member/zhiiker" title="V2EX"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/tobechaos" title="新浪微博"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/liangshichao" title="知乎"></a>
+                            
+                                <a class="fa 豆瓣" target="_blank" href="https://www.douban.com/people/tobechaos/" title="豆瓣"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="http://www.jianshu.com/u/d5add3cb2d34" title="简书"></a>
+                            
+                                <a class="fa SegmentFault" target="_blank" href="https://segmentfault.com/u/zhiiker" title="SegmentFault"></a>
+                            
+                                <a class="fa 博客园" target="_blank" href="https://www.cnblogs.com/zhiiker" title="博客园"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://my.csdn.net/zhiiker" title="CSDN"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#/user/home?id=72587395" title="网易云音乐"></a>
+                            
+                                <a class="fa bilibili" target="_blank" href="https://space.bilibili.com/953543/" title="bilibili"></a>
+                            
+                                <a class="fa Facebook" target="_blank" href="https://www.facebook.com/realshichao" title="Facebook"></a>
+                            
+                                <a class="fa Twitter" target="_blank" href="https://twitter.com/zhiiker" title="Twitter"></a>
+                            
+                                <a class="fa LinkedIn" target="_blank" href="https://cn.linkedin.com/in/liangshichao" title="LinkedIn"></a>
+                            
+                                <a class="fa QQ" target="_blank" href="https://images.liangs.me/avatars/qrcode_1521369601487.jpg" title="QQ"></a>
+                            
+                                <a class="fa PayPal" target="_blank" href="https://paypal.me/realshichao" title="PayPal"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="https://stackoverflow.com/users/4978576/zhiiker" title="StackOverflow"></a>
+                            
+                                <a class="fa reddit" target="_blank" href="https://www.reddit.com/user/zhiiker/" title="reddit"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-笔记/2017-07-19.Dropbox + VPS + Incrond+Hexo搭建博客小记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/07/19/%E7%AC%94%E8%AE%B0/2017-07-19.Dropbox%20+%20VPS%20+%20Incrond+Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B0%8F%E8%AE%B0/" class="article-date">
+      <time datetime="2017-07-19T10:03:23.000Z" itemprop="datePublished">2017-07-19</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Dropbox + VPS + Incrond+Hexo搭建博客小记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dropbox/" rel="tag">Dropbox</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Incrond/" rel="tag">Incrond</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><img src="https://images.liangs.me/bitcron/Notes/_image/2017-07-17-16-56-13.jpg"></p>
+<h2 id="安装前准备"><a href="#安装前准备" class="headerlink" title="安装前准备"></a>安装前准备</h2><ol>
+<li>首先登陆vps需要执行如下命令更新各种依赖</li>
+<li>为防止机器没有安装epel，先安装epel(必须安装)</li>
+</ol>
+<ul>
+<li>升级 CentOs 内核 <code>yum -y update</code></li>
+<li>安装 Git <code>yum install git-core</code><span id="more"></span>
+导入key<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm --import http://download-i2.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-6</span><br></pre></td></tr></table></figure>
+安装epel，分别是32位和64位<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh http://download-i2.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm</span><br><span class="line">rpm -Uvh http://download-i2.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm</span><br></pre></td></tr></table></figure>
+然后安装yum-priorities<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install yum-priorities -y</span><br></pre></td></tr></table></figure>
+安装好后用命令看下，如果成功的话输出内容里有epel字样<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum repolist</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="3">
+<li>安装Node.js<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install nodejs	</span><br><span class="line">sudo yum install npm --enablerepo=epel</span><br></pre></td></tr></table></figure>
+<h2 id="安装Dropbox"><a href="#安装Dropbox" class="headerlink" title="安装Dropbox"></a>安装Dropbox</h2></li>
+<li>网上给出的教程试了好几次都有问题，自己搜到了正确的姿势<br>参考说明:<a target="_blank" rel="noopener" href="http://www.dropboxwiki.com/tips-and-tricks/install-dropbox-in-an-entirely-text-based-linux-environment">nstall Dropbox In An Entirely Text-Based Linux Environment</a><br>安装代码如下：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd</span><br><span class="line">32位</span><br><span class="line">wget -O dropbox.tar.gz &quot;http://www.dropbox.com/download/?plat=lnx.x86&quot;</span><br><span class="line">64位</span><br><span class="line">wget https://clientupdates.dropboxstatic.com/dbx-releng/client/dropbox-lnx.x86_64-30.4.22.tar.gz</span><br><span class="line">tar -xvzf dropbox-lnx.x86_64-30.4.22.tar.gz</span><br></pre></td></tr></table></figure>
+然后执行，登录Dropbox的账号。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.dropbox-dist/dropboxd</span><br></pre></td></tr></table></figure>
+首次打开需要你验证账户。选择有右键复制上面一段，浏览器打开，登录你的Dropbox账号，授权这台机器参与你的网盘同步，关联成功会出现如下画面，Ctrl+C一下<br><img src="https://images.liangs.me/bitcron/Notes/_image/2017-07-19-16-21-05.jpg"></li>
+</ol>
+<p><img src="https://images.liangs.me/bitcron/Notes/_image/2017-07-19-16-24-40.jpg"></p>
+<p>注意：进入连接后，一定要等刷新完毕后再点，并且不能结束终端，等到关联成功的消息。</p>
+<h3 id="Dropbox使用"><a href="#Dropbox使用" class="headerlink" title="Dropbox使用"></a>Dropbox使用</h3><p>切换到dropbox.py脚本所在位置<br>查看dropbox 工作状态<code>./dropbox.py status</code><br>开始同步 <code>./dropbox.py start</code><br>停止同步 <code>./dropbox.py stop</code><br>帮助 <code>./dropbox.py exclude help</code></p>
+<h4 id="选择性同步文件夹"><a href="#选择性同步文件夹" class="headerlink" title="选择性同步文件夹"></a>选择性同步文件夹</h4><p>例如你不需要同步<code>Dropbox/books/</code>目录，进入Dropbox目录<code>cd ~/Dropbox</code>，运行exclude来排除books目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./dropboxy.py exclude add books #当前目录最好在Dropbox</span><br></pre></td></tr></table></figure>
+<p>更多不需要同步的目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./dropboxy.py exclude add book photos Public Documents #排除Dropbox目录下books, photos, Public, Documents等目录</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><ol>
+<li>在刚才上面的结束之后 ls一下看看<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@vultr ~]# ls</span><br><span class="line">Dropbox  dropbox.tar.gz----这行是结果  别执行</span><br></pre></td></tr></table></figure></li>
+<li>切进去Dropbox目录<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd Dropbox</span><br></pre></td></tr></table></figure></li>
+<li>接下来创建博客的目录<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir hexo</span><br><span class="line">cd hexo</span><br></pre></td></tr></table></figure></li>
+<li>开始正式安装hexo<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g   网上教程里的很多命令在256或者128内存下全部是坑，因为内存关系安装不了</span><br><span class="line">hexo init        初始化hexo的意思</span><br><span class="line">hexo generate    可缩写为：hexo g</span><br><span class="line">hexo server     可缩写为：hexo s</span><br></pre></td></tr></table></figure>
+这时端口4000被打开了，我们能过浏览器打开地址，http://&lt;服务器ip&gt;:4000/.    访问测试一下看能不能看到首页，如果看不到或者结果不是OK，请排查错误。</li>
+</ol>
+<p>添加防火墙例外</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 4000 -j ACCEPT</span><br></pre></td></tr></table></figure>
+
+<p>或直接关闭防火墙</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> 临时生效，重启后复原</span><br><span class="line">开启： service iptables start</span><br><span class="line">关闭： service iptables stop</span><br><span class="line"> </span><br><span class="line">永久性生效，重启后不会复原</span><br><span class="line">开启： chkconfig iptables on</span><br><span class="line">关闭： chkconfig iptables off</span><br></pre></td></tr></table></figure>
+<p>这个时候可以去你的Dropbox网盘里看看有没有hexo目录，并且目录结构如下</p>
+<p><img src="https://images.liangs.me/bitcron/Notes/_image/2017-07-19-16-29-41.jpg"></p>
+<ul>
+<li>下载Dropbox官方提供的一个用于管理的 Python 脚本 <code>wget https://linux.dropbox.com/packages/dropbox.py</code> 所有命令可以点击<a target="_blank" rel="noopener" href="https://www.dropbox.com/help/desktop-web/linux-commands">这里</a>查看</li>
+<li>增加这个脚本的权限 <code>chmod +x ./dropbox.py</code></li>
+<li>加入到自启动 <code>./dropbox.py autostart y</code>然而实际测试发现这个在重启后 root 用户登录后没有自动启动，需要手动登录到 dbox 用户下进行启动，启动代码为<code> ./dropbox.py start</code> 可以用 <code>ps -e</code>命令来查看当前进程看看有没有成功启动</li>
+<li>关闭局域网同步 <code>./dropbox.py lansync n </code>话说不关应该也没事<br><img src="https://images.liangs.me/bitcron/Notes/_image/2017-07-19-16-34-25.jpg"></li>
+</ul>
+<h2 id="安装并配置Nginx"><a href="#安装并配置Nginx" class="headerlink" title="安装并配置Nginx"></a>安装并配置Nginx</h2><p>注意：如果有单独数据盘，建议您先挂载数据盘，建议将网站内容、数据库放在数据盘中。如何挂载数据盘，请参考（支持阿里云、腾讯云）：<a target="_blank" rel="noopener" href="http://oneinstack.com/question/how-to-mount-a-data-disc/">《如何利用脚本自动化挂载数据盘？》</a></p>
+<ol>
+<li>安装步骤参考：<a target="_blank" rel="noopener" href="https://oneinstack.com/install/">安装说明</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">yum -y install wget screen curl python   <span class="comment">#for CentOS/Redhat # </span></span><br><span class="line">apt-get -y install wget screen curl python  <span class="comment">#for Debian/Ubuntu wget http://aliyun-oss.linuxeye.com/oneinstack-full.tar.gz    </span></span><br><span class="line"><span class="comment">#阿里云用户下载 </span></span><br><span class="line">wget http://mirrors.linuxeye.com/oneinstack-full.tar.gz    </span><br><span class="line"><span class="comment">#包含源码，国内外均可下载 </span></span><br><span class="line">wget http://mirrors.linuxeye.com/oneinstack.tar.gz    </span><br><span class="line"><span class="comment">#不包含源码，建议仅国外主机下载 </span></span><br><span class="line">tar xzf oneinstack-full.tar.gz </span><br><span class="line"><span class="built_in">cd</span> oneinstack    </span><br><span class="line"><span class="comment">#如果需要修改目录(安装、数据存储、Nginx日志)，请修改options.conf文件 </span></span><br><span class="line">screen -S oneinstack    </span><br><span class="line"><span class="comment">#如果网路出现中断，可以执行命令`screen -r oneinstack`重新连接安装窗口 </span></span><br><span class="line">./install.sh     </span><br><span class="line"><span class="comment">#注：请勿sh install.sh或者bash install.sh这样执行</span></span><br></pre></td></tr></table></figure></li>
+<li>安装好之后添加虚拟主机<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd oneinstack</span><br><span class="line">./vhost.sh</span><br></pre></td></tr></table></figure></li>
+<li>修改Nginx配置文件<br>这里路径缓存你自己的虚拟主机路径，也就是你自己的域名<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/local/nginx/conf/vhost/blog.liangs.me.conf  (你的配置文件名)</span><br></pre></td></tr></table></figure>
+如果只想要静态的页面<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server</span><br><span class="line">    &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        #listen [::]:80;</span><br><span class="line">        server_name blog.liangs.me;   (你的站点域名)</span><br><span class="line">        index index.html index.htm index.php default.html default.htm default.php;</span><br><span class="line">        root  /root/Dropbox/hexo/public;   (hexo的目录)</span><br><span class="line">        ...</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+如果要想实现<code>hexo s</code>后实时动态的页面<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name blog.liangs.me;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">    proxy_pass http://127.0.0.1:4000/;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+增加文件夹权限，否则会出现[permission denied]错误无法同步文件。根据你的目录来，还有我是直接都赋予777属性(所有人可以读写运行)了以防出错，<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 755 /root/Dropbox/hexo/public</span><br><span class="line">chown www:www /root/Dropbox/hexo/public</span><br><span class="line">chmod +x /root/ /root/Dropbox/ /root/Dropbox/hexo/</span><br></pre></td></tr></table></figure>
+然后重启nginx<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service nginx restart</span><br></pre></td></tr></table></figure>
+<h2 id="内容同步发布"><a href="#内容同步发布" class="headerlink" title="内容同步发布"></a>内容同步发布</h2></li>
+<li>安装和配置 incrond 检测文件变化。incrond 可以监控指定目录的文件指定变化(删除修改打开移动等等)，并且运行指定命令。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install incron</span><br></pre></td></tr></table></figure>
+启动并加入自启<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service incrond start</span><br><span class="line">chkconfig incrond on</span><br></pre></td></tr></table></figure>
+修改默认编辑器为 Vi (貌似默认编辑器本来是一个 GUI，我们远程状态下没有 GUI)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;editor = vi&#x27; &gt;&gt; /etc/incron.conf</span><br></pre></td></tr></table></figure>
+这个时候使用以下命令来进行编辑<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">incrontab -e</span><br></pre></td></tr></table></figure>
+打开后添加：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/home/ubuntu/Dropbox/hexo/source/_posts/ IN_MODIFY,IN_CREATE,IN_DELETE,IN_MOVE /home/ubuntu/Dropbox/hexo/hexo.sh</span><br><span class="line">/home/ubuntu/Dropbox/hexo/source/_posts/笔记/ IN_MODIFY,IN_CREATE,IN_DELETE,IN_MOVE /home/ubuntu/Dropbox/hexo/hexo.sh</span><br><span class="line">/home/ubuntu/Dropbox/hexo/source/_posts/结绳纪/ IN_MODIFY,IN_CREATE,IN_DELETE,IN_MOVE /home/ubuntu/Dropbox/hexo/hexo.sh</span><br><span class="line">/home/ubuntu/Dropbox/hexo/source/_posts/拾摘/ IN_MODIFY,IN_CREATE,IN_DELETE,IN_MOVE /home/ubuntu/Dropbox/hexo/hexo.sh</span><br><span class="line">/home/ubuntu/Dropbox/hexo/source/_posts/萱苏小筑/ IN_MODIFY,IN_CREATE,IN_DELETE,IN_MOVE /home/ubuntu/Dropbox/hexo/hexo.sh</span><br><span class="line">/home/ubuntu/Dropbox/hexo/themes/ IN_MODIFY,IN_CREATE,IN_DELETE,IN_MOVE /home/ubuntu/Dropbox/hexo/hexo.sh</span><br></pre></td></tr></table></figure>
+设置定时任务，方法参照<a target="_blank" rel="noopener" href="http://www.liangshichao.com/2017/03/19/%E7%AC%94%E8%AE%B0/2017-03-19.Linux%20%E4%B8%8B%E6%89%A7%E8%A1%8C%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%20crontab%20%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/">这里</a></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* */1 * * * sh /root/runhexo.sh</span><br></pre></td></tr></table></figure>
+<p>会使用到的一些命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service incrond stop</span><br><span class="line">service incrond start</span><br><span class="line">service incrond status</span><br></pre></td></tr></table></figure>
+<p>最后写 runhexo 这个脚本</p>
+<ul>
+<li>首先我们可以用以下指令新建空文本  <code>touch runhexo.sh</code> 注意要在 root 目录下创建。目录要对应你在 incrontab 的里写的目录。</li>
+<li>然后打开文件进行编辑 <code>vim /root/runhexo.sh</code> </li>
+<li>代码如下：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"><span class="built_in">exec</span> 200&lt;<span class="variable">$0</span></span><br><span class="line">flock -n 200 || <span class="built_in">exit</span> 1</span><br><span class="line">sleep 10</span><br><span class="line"><span class="built_in">cd</span> /root/Dropbox/hexo &amp;&amp; hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br><span class="line"><span class="built_in">cd</span> /root/Dropbox/hexo/<span class="built_in">source</span>/ &amp;&amp; git add -A &amp;&amp; git commit -m <span class="string">&quot;auto commit&quot;</span> &amp;&amp; git push</span><br></pre></td></tr></table></figure>
+上面push到github还需要配置SSH等步骤，见后面的描述。<br>以上代码会在特定时间内只允许一个脚本实例运行。运行后会清理 Hexo 原有的静态文件, 生成新的静态文件以供读取，并且会自动传到相应的Github上的repo备份。<br>好了到这里就应该可以了。然后可以 debug 测试一下，并且可以关机给服务器搞个 snapshot 快照进行备份，以防以后出错 (重启后记得手动运行一下 Dropbox)。</li>
+</ul>
+<h2 id="使用hexo-hey插件为博客添加后台编辑"><a href="#使用hexo-hey插件为博客添加后台编辑" class="headerlink" title="使用hexo-hey插件为博客添加后台编辑"></a>使用hexo-hey插件为博客添加后台编辑</h2><p><img src="https://images.liangs.me/bitcron/Notes/_image/2017-07-19-17-20-09.jpg"><br>hexo-hey项目地址:<a target="_blank" rel="noopener" href="https://github.com/nihgwu/hexo-hey">https://github.com/nihgwu/hexo-hey</a><br>安装:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-hey --save</span><br></pre></td></tr></table></figure>
+<p>配置<code>_config.yml</code>文件<br>添加如下几行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Admin</span><br><span class="line">admin:</span><br><span class="line">    name: hexo</span><br><span class="line">    password: hey</span><br><span class="line">    secret: hey hexo</span><br><span class="line">    expire: 60*1</span><br><span class="line">    # cors: http://localhost:3000</span><br></pre></td></tr></table></figure>
+<p>运行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo serve</span><br></pre></td></tr></table></figure>
+<p>这个时候你的博客网站的管理后台就可以远程的在你 VPS 的 IP地址的4000端口访问到。比如 <code>&lt;vps的ip&gt;:4000/admin</code>。</p>
+<h2 id="配置Github-Coding多账号管理SSH-Key"><a href="#配置Github-Coding多账号管理SSH-Key" class="headerlink" title="配置Github/Coding多账号管理SSH Key"></a>配置Github/Coding多账号管理SSH Key</h2><ol>
+<li>单个网站通过Https链接，避免22端口关闭错误。<br>测试https端口连通性<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T -p 443 git@ssh.github.com</span><br></pre></td></tr></table></figure>
+添加ssh配置文件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.ssh/config</span><br></pre></td></tr></table></figure>
+写入内容<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">Hostname ssh.github.com</span><br><span class="line">Port 443</span><br></pre></td></tr></table></figure></li>
+<li>多网站多账号SSH Key配置</li>
+</ol>
+<ul>
+<li>生成Github和Coidng的SSH Key<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -f ~/.ssh/id_rsa_github -C “wmwwmv@gmail.com”</span><br><span class="line">ssh-keygen -t rsa -f ~/.ssh/id_rsa_coding -C &quot;wmwwmv@163.com”</span><br></pre></td></tr></table></figure>
+检查key是否生成<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls ~/.ssh</span><br></pre></td></tr></table></figure></li>
+<li>添加private key<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-add ~/.ssh/id_rsa_github</span><br><span class="line">ssh-add ~/.ssh/id_rsa_coding</span><br></pre></td></tr></table></figure>
+如果执行ssh-add时提示”Could not open a connection to your authentication agent”，可以先执行命令：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-agent bash</span><br></pre></td></tr></table></figure>
+然后再运行ssh-add命令。<br>可以通过 ssh-add -l 来确私钥列表<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add -l</span><br></pre></td></tr></table></figure>
+可以通过 ssh-add -D 来清空私钥列表<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add -D</span><br></pre></td></tr></table></figure></li>
+<li>修改配置文件<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Github</span></span><br><span class="line">Host github.com</span><br><span class="line">HostName ssh.github.com</span><br><span class="line">Port 443</span><br><span class="line">User wmwwmv@gmail.com</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentityFile ~/.ssh/id_rsa_github</span><br><span class="line"><span class="comment">#coding</span></span><br><span class="line">Host git.coding.net</span><br><span class="line">Hostname git-ssh.coding.net</span><br><span class="line">User wmwwmv@163.com</span><br><span class="line">Port 443</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentityFile ~/.ssh/id_rsa_coding</span><br></pre></td></tr></table></figure></li>
+<li>上传public key 到 GitHub/Coidng<br>GitHub设置过程如下：<br>登录github，点击右上方的图标，点击“Settings”</li>
+</ul>
+<p><img src="https://images.liangs.me/bitcron/Notes/_image/2017-07-19-17-56-16.jpg"><br>选择“SSH and GPG keys”，点击“New SSH key”，在出现的界面中填写SSH key的名称，填一个你自己喜欢的名称即可，然后将上面拷贝的 ~/.ssh/id_isa_github.pub 文件内容粘帖到 key 一栏，在点击“Add SSH key”按钮就可以了。</p>
+<p><img src="https://images.liangs.me/bitcron/Notes/_image/2017-07-19-17-56-29.jpg"><br>添加过程github会提示你输入一次你的github密码 ，确认后即添加完毕。</p>
+<ul>
+<li>测试<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 测试github</span><br><span class="line">$ ssh -T git@github.com</span><br><span class="line"># 测试Coding</span><br><span class="line">$ ssh -T git@git.coding.net</span><br><span class="line"># 测试gitlab</span><br><span class="line">$ ssh -T git@gitlab.example.com</span><br></pre></td></tr></table></figure>
+<code>_config.yml</code>配置</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: </span><br><span class="line">    github: git@github.com:wmwwmv/wmwwmv.github.io.git</span><br><span class="line">    coding: git@git.coding.net:shichao/xiaozhu.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><h3 id="hexo-deploy时重复输入用户名密码的问题"><a href="#hexo-deploy时重复输入用户名密码的问题" class="headerlink" title="hexo deploy时重复输入用户名密码的问题"></a>hexo deploy时重复输入用户名密码的问题</h3><p>每次部署执行hexo deploy都需要输入用户名<br><img src="https://images.liangs.me/bitcron/Notes/_image/b84f46c31486c0689dcb46fe856a3408_hexo-01.png"><br>问题原因及解决方案：<br>最主要的原因可能是你没有采用<a href="mailto:&#103;&#105;&#x74;&#x40;&#103;&#x69;&#116;&#x68;&#x75;&#98;&#x2e;&#99;&#111;&#x6d;">&#103;&#105;&#x74;&#x40;&#103;&#x69;&#116;&#x68;&#x75;&#98;&#x2e;&#99;&#111;&#x6d;</a><br><img src="https://images.liangs.me/bitcron/Notes/_image/ff716f897db6f52aae3fe00d8a7e6ca5_hexo-04.png"><br>而是用https//github.com<br><img src="https://images.liangs.me/bitcron/Notes/_image/5a6545da6f259e0f0ee8a92550861cda_hexo-03.png"><br>修改后重新提交部署：<br><img src="https://images.liangs.me/bitcron/Notes/_image/9ac59c621f8f09f44cf517c55e0bec7d_hexo-02.png"></p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul>
+<li>为了避免上传一次就重新将pulic .git文件夹就同步一次，所以在本地Dropbox上要选择性同步。</li>
+<li>想利用分布式解析国内解析到coding 国外解析到github，结果国内访问github比coding还快<br>这里可以解析国内到Coding的repo解析国外到github的repo</li>
+</ul>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>利用supervisor让hexo服务常驻后台<br>在<code>supervisord.conf</code>这个文件末尾加上</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[include]</span><br><span class="line">files = /etc/supervisor/*.conf</span><br></pre></td></tr></table></figure>
+<p>新建<code>hexo-server.conf</code>文件<br>写脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[program:hexo-server]</span><br><span class="line"><span class="built_in">command</span> = hexo s</span><br><span class="line">directory = /root/Dropbox/hexo</span><br><span class="line">user=root</span><br><span class="line">autostart = <span class="literal">true</span></span><br><span class="line">autorestart = <span class="literal">true</span></span><br><span class="line">stdout_logfile = /var/<span class="built_in">log</span>/supervisor/hexo.log</span><br><span class="line">stderr_logfile = /var/<span class="built_in">log</span>/supervisor/hexo_err.log</span><br></pre></td></tr></table></figure>
+<p>supervisor的一些命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">supervisord，初始启动Supervisord，启动、管理配置中设置的进程。</span><br><span class="line">supervisorctl stop programxxx，停止某一个进程(programxxx)，programxxx为[program:chatdemon]里配置的值，这个示例就是chatdemon。</span><br><span class="line">supervisorctl start programxxx，  启动某个进程</span><br><span class="line">supervisorctl restart programxxx，重启某个进程</span><br><span class="line">supervisorctl stop groupworker: ，重启所有属于名为groupworker这个分组的进程(start,restart同理)</span><br><span class="line">supervisorctl stop all，          停止全部进程，注：start、restart、stop都不会载入最新的配置文件。</span><br><span class="line">supervisorctl reload，            载入最新的配置文件，停止原有进程并按新的配置启动、管理所有进程。</span><br><span class="line">supervisorctl update，            根据最新的配置文件，启动新配置或有改动的进程，配置没有改动的进程不会受影响而重启。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Git同步之前需要先做些准备工作:<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /root/Dropbox/hexo/source/ &amp;&amp; git add 404 readme.md about _drafts _posts about tags resources &amp;&amp; git commit -m &quot;auto commit&quot; &amp;&amp; git remote add origin git@github.com:wmwwmv/BlogBackup.git &amp;&amp; git push -u origin master</span><br></pre></td></tr></table></figure></li>
+<li>使用MarkdownEditor的fileshook<br>命令<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; cd source/ &amp;&amp; git add -A &amp;&amp; git commit -m &quot;auto commit&quot; &amp;&amp; git push</span><br></pre></td></tr></table></figure>
+然后将第三方云设置成七牛的图床就更加完美了，不仅能拖入普遍自动生成链接，还可以自动发布。</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.imfer.me/#!/post/2014-04-25-centos-install-dropbox">centos 使用 Dropbox 同步</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.centoscn.com/CentOS/2015/0313/4877.html">CentOS入门 &gt;centos7关闭防火墙</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.imooc.com/article/4433">hexo deploy时重复输入用户名密码的问题</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/edward2013/p/5396254.html">CentOS7上GitHub/GitLab多帐号管理SSH Key</a></li>
+<li><a target="_blank" rel="noopener" href="https://ipe6.com/?p=28">Hexo+Dropbox+VPS搭建博客小记</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/07/19/%E7%AC%94%E8%AE%B0/2017-07-19.Dropbox%20+%20VPS%20+%20Incrond+Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B0%8F%E8%AE%B0/">Dropbox + VPS + Incrond+Hexo搭建博客小记</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">undefined</a></p>
+        <p><span>发布时间:</span>2017-07-19, 18:03:23</p>
+        <p><span>最后更新:</span>2018-12-08, 18:11:43</p>
+        <!-- 不设置 backup: false 则默认显示 -->
+        
+         <p>
+            <span>更新历史:</span><i class="fa fa-github"></i>
+            <!-- 不同功能替换前面超链接即可，文件名不变 -->
+            <!-- 文件名生成: 2017-07-19.笔记/2017-07-19.Dropbox + VPS + Incrond+Hexo搭建博客小记 -->
+            <a target="_blank" rel="noopener" href="https://github.com/wmwwmv/BlogBackup/blame/master/_posts/笔记/2017-07-19.Dropbox + VPS + Incrond+Hexo搭建博客小记.md" title="顺序查看文章各部分修改记录" target = "_blank">Blame</a>,
+            <a target="_blank" rel="noopener" href="https://github.com/wmwwmv/BlogBackup/commits/master/_posts/笔记/2017-07-19.Dropbox + VPS + Incrond+Hexo搭建博客小记.md" title="查看文章有关更新记录" target = "_blank">History</a><span class="raw">文本模式:</span><i class="fa fa-file-text-o"></i>
+            <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/wmwwmv/BlogBackup/master/_posts/笔记/2017-07-19.Dropbox + VPS + Incrond+Hexo搭建博客小记.md" title="查看 & 下载文章 Markdown 原始文本" target = "_blank"> .md Raw</a>
+        </p>
+        
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/07/19/%E7%AC%94%E8%AE%B0/2017-07-19.Dropbox%20+%20VPS%20+%20Incrond+Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B0%8F%E8%AE%B0/" title="Dropbox + VPS + Incrond+Hexo搭建博客小记">https://www.zhiiker.com/2017/07/19/%E7%AC%94%E8%AE%B0/2017-07-19.Dropbox%20+%20VPS%20+%20Incrond+Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B0%8F%E8%AE%B0/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://www.zhiiker.com/2017/07/19/%E7%AC%94%E8%AE%B0/2017-07-19.Dropbox%20+%20VPS%20+%20Incrond+Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B0%8F%E8%AE%B0/　　作者: undefined" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/07/27/%E7%AC%94%E8%AE%B0/2017-07-27.%E8%A7%A3%E5%86%B3Hexo%20deploy%E5%A4%B1%E8%B4%A5/">
+                    解决Hexo deploy失败
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/07/17/%E7%AC%94%E8%AE%B0/2017-07-17.%E5%B0%86%E4%B8%8D%E5%90%8C%E5%9C%B0%E6%96%B9%E6%96%87%E4%BB%B6%E5%A4%B9%E5%90%8C%E6%AD%A5%E5%88%B0Dropbox/">
+                    将不同地方文件夹同步到Dropbox
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%89%8D%E5%87%86%E5%A4%87"><span class="toc-number">1.</span> <span class="toc-text">安装前准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Dropbox"><span class="toc-number">2.</span> <span class="toc-text">安装Dropbox</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dropbox%E4%BD%BF%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">Dropbox使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E6%80%A7%E5%90%8C%E6%AD%A5%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">2.1.1.</span> <span class="toc-text">选择性同步文件夹</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85hexo"><span class="toc-number">3.</span> <span class="toc-text">安装hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AENginx"><span class="toc-number">4.</span> <span class="toc-text">安装并配置Nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AE%B9%E5%90%8C%E6%AD%A5%E5%8F%91%E5%B8%83"><span class="toc-number">5.</span> <span class="toc-text">内容同步发布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8hexo-hey%E6%8F%92%E4%BB%B6%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%90%8E%E5%8F%B0%E7%BC%96%E8%BE%91"><span class="toc-number">6.</span> <span class="toc-text">使用hexo-hey插件为博客添加后台编辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEGithub-Coding%E5%A4%9A%E8%B4%A6%E5%8F%B7%E7%AE%A1%E7%90%86SSH-Key"><span class="toc-number">7.</span> <span class="toc-text">配置Github&#x2F;Coding多账号管理SSH Key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">8.</span> <span class="toc-text">遇到的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo-deploy%E6%97%B6%E9%87%8D%E5%A4%8D%E8%BE%93%E5%85%A5%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">8.1.</span> <span class="toc-text">hexo deploy时重复输入用户名密码的问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-number">9.</span> <span class="toc-text">注意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E8%AE%B0"><span class="toc-number">10.</span> <span class="toc-text">后记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">11.</span> <span class="toc-text">参考</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-6 i,
+        .toc-level-6 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+
+    
+        <div class="addthis_sharing_toolbox"></div>
+    
+</div>
+
+
+
+
+
+
+
+    
+    <section id="comments" style="margin: 2em; padding: 2em; background: rgba(255, 255, 255, 0.5)">
+    <div id="vcomment" class="comment"></div>
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NTk1Ny8yMjQ2OA==">
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+
+                if (typeof LivereTower === 'function') { return; }
+
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</section>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/07/27/%E7%AC%94%E8%AE%B0/2017-07-27.%E8%A7%A3%E5%86%B3Hexo%20deploy%E5%A4%B1%E8%B4%A5/" title="上一篇: 解决Hexo deploy失败">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/07/17/%E7%AC%94%E8%AE%B0/2017-07-17.%E5%B0%86%E4%B8%8D%E5%90%8C%E5%9C%B0%E6%96%B9%E6%96%87%E4%BB%B6%E5%A4%B9%E5%90%8C%E6%AD%A5%E5%88%B0Dropbox/" title="下一篇: 将不同地方文件夹同步到Dropbox">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/03/28/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97/2019-08-10.%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%8D%A2%E4%B8%BAlivere/">评论系统更换为livere</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/30/%E7%AC%94%E8%AE%B0/2019-08-30.%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%B5%8B%E8%AF%95%E8%84%9A%E6%9C%AC%E9%9B%86%E5%90%88/">服务器测试脚本集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/18/%E6%8B%BE%E6%91%98/2019-06-18.%E5%8D%AE%E8%A8%80%E6%97%A5%E5%87%BA%EF%BC%8C%E5%92%8C%E4%BB%A5%E5%A4%A9%E5%80%AA%E4%B8%A8%E3%80%8A%E5%AF%93%E8%A8%80%E3%80%8B%E7%AB%A0%E4%B8%80/">卮言日出，和以天倪丨《寓言》章一</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/22/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97/2019-04-22.%E5%8D%AE%E5%AE%A2%E6%9D%82%E4%BF%8E%E7%9A%84%E5%90%AB%E4%B9%89/">卮客杂俎的含义</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/17/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97/Press.one%20%E6%8E%88%E6%9D%83/">Press.one 授权</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/30/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97/2018-12-30.%E5%8D%9A%E5%AE%A2%E4%BF%AE%E5%A4%8D/">博客修复</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/13/%E7%AC%94%E8%AE%B0/2018-12-12.Seafile%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AEv3/">Seafile安装与配置v3</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/09/%E7%AC%94%E8%AE%B0/2018-12-09.Hexo%E5%8D%9A%E5%AE%A2%E5%8D%87%E7%BA%A7%E5%B0%8F%E8%AE%B0/">Hexo博客升级小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/18/%E7%AC%94%E8%AE%B0/2018-11-18.Atom%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">Atom的一些问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/04/%E7%AC%94%E8%AE%B0/2018-11-04.%E7%94%A8Atom%E5%86%99LaTeX%E6%96%87%E6%A1%A3/">用Atom写LaTeX文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/03/%E7%AC%94%E8%AE%B0/2018-11-03.%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">内网穿透</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/11/%E7%BB%93%E7%BB%B3%E7%BA%AA/2018-08-11.%E6%96%B0%E7%9A%84%E5%90%8D%E5%AD%97%E2%80%94%E8%B1%A1%E7%BD%94%E5%8D%AE%E4%BA%BA/">新的名号—象罔卮人(卮客)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/%E7%AC%94%E8%AE%B0/2018-08-07.%E9%85%8D%E7%BD%AEIPython%20Notebook%E6%8F%90%E4%BE%9B%E9%9D%9E%E6%9C%AC%E5%9C%B0%E8%AE%BF%E9%97%AE/">配置IPython Notebook提供非本地访问</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/%E7%AC%94%E8%AE%B0/2018-08-06.Ubuntu%E4%B8%8B%E5%AE%89%E8%A3%85pyenv%E3%80%81IPython%20Notebook%E5%92%8C%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97%E5%8C%85%E7%9A%84%E8%BF%87%E7%A8%8B%E6%80%BB%E7%BB%93/">Ubuntu下安装pyenv、IPython  Notebook和科学计算包的过程总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/11/%E7%AC%94%E8%AE%B0/2018-04-11.%E4%B8%AA%E4%BA%BA%E8%AF%BB%E4%B9%A6%E7%BB%8F%E5%8E%86/">个人读书经历</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/%E7%AC%94%E8%AE%B0/2017-08-02.%E5%90%8C%E6%97%B6%E6%8A%8A%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E5%88%B0%E4%B8%A4%E4%B8%AAgit%E4%BB%A3%E7%A0%81%E6%89%98%E7%AE%A1%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A/">同时把代码提交到两个git代码托管的服务器上</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/01/%E7%AC%94%E8%AE%B0/2017-08-01.%E4%BD%BF%E7%94%A8cpuminer%E5%9C%A8Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%94%A8CPU%E6%8C%96%E7%9F%BF/">使用cpuminer在Linux环境下用CPU挖矿</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/27/%E7%AC%94%E8%AE%B0/2017-07-27.%E8%A7%A3%E5%86%B3Hexo%20deploy%E5%A4%B1%E8%B4%A5/">解决Hexo deploy失败</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/%E7%AC%94%E8%AE%B0/2017-07-19.Dropbox%20+%20VPS%20+%20Incrond+Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B0%8F%E8%AE%B0/">Dropbox + VPS + Incrond+Hexo搭建博客小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/17/%E7%AC%94%E8%AE%B0/2017-07-17.%E5%B0%86%E4%B8%8D%E5%90%8C%E5%9C%B0%E6%96%B9%E6%96%87%E4%BB%B6%E5%A4%B9%E5%90%8C%E6%AD%A5%E5%88%B0Dropbox/">将不同地方文件夹同步到Dropbox</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/17/%E7%AC%94%E8%AE%B0/2017-07-17.fs.SyncWriteStream%20is%20deprecated/">fs.SyncWriteStream is deprecated</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/12/%E7%AC%94%E8%AE%B0/2017-07-11.%E4%BD%BF%E7%94%A8Seafile+ossfs+oss%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E7%A7%81%E6%9C%89%E4%BA%91%E7%9B%98/">使用Seafile+ossfs+oss搭建属于自己的私有云盘</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/11/%E7%AC%94%E8%AE%B0/2017-07-11.%E5%8D%87%E7%BA%A7Seafile%E5%88%B0%E4%B8%93%E4%B8%9A%E7%89%88/">升级Seafile到专业版，更换端口，开机启动</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/20/%E7%AC%94%E8%AE%B0/2017-03-20.JSP%E4%B8%8EServlet%E4%B9%8B%E9%97%B4%E4%BC%A0%E5%80%BC/">JSP与Servlet之间传值</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/19/%E7%AC%94%E8%AE%B0/2017-03-19.Linux%20%E4%B8%8B%E6%89%A7%E8%A1%8C%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%20crontab%20%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/">Linux 下执行定时任务 crontab 命令详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/22/%E7%AC%94%E8%AE%B0/2017-02-22.%E4%B8%AA%E4%BA%BA%E5%90%8D%E7%A7%B0-%E5%BC%95%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E5%87%BA%E5%A4%84/">个人名称、引用的一些出处</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/23/%E7%AC%94%E8%AE%B0/2016-11-23.oracle%E4%B8%AD%E5%85%B3%E4%BA%8E%E5%8D%95%E5%BC%95%E5%8F%B7%E5%92%8C%E5%8F%8C%E5%BC%95%E5%8F%B7%E7%9A%84%E9%97%AE%E9%A2%98/">oracle中关于单引号和双引号的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/16/%E7%AC%94%E8%AE%B0/2016-11-16.%E7%AC%94%E8%AE%B0%E7%BC%96%E8%BE%91%E5%B7%A5%E5%85%B7%E7%9A%84%E6%9C%80%E5%90%8E%E9%80%89%E6%8B%A9/">最终的写作解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/16/%E7%AC%94%E8%AE%B0/2016-11-16.use_case-when_implement_if-then-else_logic/">使用case-when实现if-then-else逻辑</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/29/%E7%AC%94%E8%AE%B0/2016-09-29.%E5%A6%82%E4%BD%95%E5%9C%A8Linux%E4%B8%AD%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%BA%A4%E6%8D%A2%E6%96%87%E4%BB%B6/">如何在Linux中创建一个交换文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/28/%E7%AC%94%E8%AE%B0/2016-09-28.Python%E4%B8%AD%E7%9A%84%E6%B3%A8%E9%87%8A/">Python中的注释</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/28/%E7%AC%94%E8%AE%B0/2016-09-28.%E6%9C%89%E5%85%B3%E7%AC%94%E8%AE%B0%E7%9A%84%E7%AE%A1%E7%90%86/">有关笔记管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/23/%E7%AC%94%E8%AE%B0/2016-09-23.Hexo%E5%B0%8F%E6%8A%80%E5%B7%A7/">Hexo小技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/23/%E7%AC%94%E8%AE%B0/2016-09-23.CMD%E5%91%BD%E4%BB%A4%E8%A1%8C/">CMD命令行</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/23/%E7%AC%94%E8%AE%B0/2016-09-23.%E5%9F%BA%E7%A1%80Git%E6%8A%80%E8%83%BD/">基础Git技能</a></li><li class="post-list-item"><a class="post-list-link" href="/DiningPhilosophersProblem">哲学家就餐问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/21/AC++/2016-09-21.%E5%A4%A7%E6%95%B4%E6%95%B0.%E5%90%8C%E4%BD%99%E5%85%B3%E7%B3%BB/">大整数、同余关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/18/AC++/2016-09-18.ICPC2016%E6%B2%88%E9%98%B3%E5%8C%BA%E5%9F%9F%E7%BD%91%E7%BB%9C%E8%B5%9B/">ICPC2016沈阳区域网络赛</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/17/AC++/2016-09-17.ICPC2016%E9%9D%92%E5%B2%9B%E5%8C%BA%E5%9F%9F%E7%BD%91%E7%BB%9C%E8%B5%9B/">ICPC2016青岛区域网络赛</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/05/%E7%AC%94%E8%AE%B0/2016-09-05.Linux%E4%B8%8B%E4%BD%BF%E7%94%A8SSH%E8%BF%9E%E6%8E%A5Windows/">Linux下使用SSH连接Windows</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/04/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97/%E4%B9%A6%E9%98%81/">书阁</a></li><li class="post-list-item"><a class="post-list-link" href="/Hexo%E6%8F%90%E4%BA%A4%E5%88%B0Github%E9%94%99%E8%AF%AF">Hexo提交到Github错误</a></li><li class="post-list-item"><a class="post-list-link" href="/%E7%B4%A0%E6%8B%93%E7%BD%91%E7%AB%99%E7%9A%84%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7">素拓网站的一些技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/Oracle%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD">Oracle安装与卸载</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/30/%E7%BB%93%E7%BB%B3%E7%BA%AA/2016-07-30.%E5%8E%BB%E7%94%9F%E6%B4%BB%EF%BC%8C%E5%8E%BB%E7%8A%AF%E9%94%99%EF%BC%8C%E5%8E%BB%E8%B7%8C%E5%80%92%EF%BC%8C%E5%8E%BB%E8%83%9C%E5%88%A9%EF%BC%8C%E5%8E%BB%E7%94%A8%E7%94%9F%E5%91%BD%E5%86%8D%E5%88%9B%E7%94%9F%E5%91%BD/">去生活，去犯错，去跌倒，去胜利，去用生命再创生命</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/30/%E7%AC%94%E8%AE%B0/2016-07-30.Hexo%E4%B8%80%E4%BA%9B%E8%AF%AD%E6%B3%95/">Hexo一些语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/30/%E7%AC%94%E8%AE%B0/2016-07-30.%E9%AB%98%E5%88%86%E5%B1%8F%E4%B8%8B%E5%AD%97%E4%BD%93%E6%98%BE%E7%A4%BA%E7%9A%84%E6%9C%80%E7%BB%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">高分屏下字体显示的最终解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/28/%E7%AC%94%E8%AE%B0/2016-07-28.Ubuntu%E4%B8%8BAnaconda%E5%AE%89%E8%A3%85/">Ubuntu下Anaconda安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/27/%E7%AC%94%E8%AE%B0/2016-07-07.Sublime%E4%BE%A7%E8%BE%B9%E6%A0%8F%E4%B9%B1%E7%A0%81%E5%92%8C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%E6%98%BE%E7%A4%BA%E4%B8%8D%E6%B8%85%E6%99%B0/">Sublime侧边栏乱码和有道云笔记显示不清晰</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/27/AC++/2016-07-27.Ubuntu%E4%B8%8BSublimeC%E5%92%8CCpp%E9%85%8D%E7%BD%AE/">Ubuntu下SublimeC&C++配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/27/AC++/2016-07-27.%E5%90%AB%E4%B9%89/">含义</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/26/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97/%E7%AB%99%E7%82%B9%E8%BF%81%E7%A7%BB/">站点迁移</a></li><li class="post-list-item"><a class="post-list-link" href="/site-building-log">建站日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/%E6%8B%BE%E6%91%98/2016-07-07.%E5%B9%BF%E7%94%B5%E6%80%BB%E5%B1%80,%E4%B8%AD%E6%96%87%E5%9F%9F%E5%90%8D/">广电总局 中文域名</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/%E6%8B%BE%E6%91%98/2016-07-07.%E5%A4%A7%E5%9B%BD%E5%9B%BD%E6%B0%91%E7%9A%84%E6%83%85%E6%80%80/">大国国民的情怀</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/06/%E6%8B%BE%E6%91%98/2016-07-06.%E6%B0%B8%E8%BF%9C%E4%BF%9D%E6%8C%81%E5%A5%BD%E5%A5%87%E5%BF%83/">永远保持好奇心</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/%E7%AC%94%E8%AE%B0/2016-06-27.%E5%90%84%E7%A7%8D%E5%A5%87%E8%91%A9%E4%B8%AD%E6%96%87%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">各种奇葩中文编程语言</a></li><li class="post-list-item"><a class="post-list-link" href="/ShadowsocksIPV4n6">Shadowsocks IPV4&IPV6服务器端配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/13/%E6%8B%BE%E6%91%98/2016-06-13.%E7%AC%AC%E4%B8%80%E9%83%A8%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%86%99%E7%9A%84%E7%94%B5%E5%BD%B1/">第一部人工智能写的电影</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/%E7%AC%94%E8%AE%B0/2016-05-11.EclipseChe/">EclipseChe</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/%E7%AC%94%E8%AE%B0/2016-05-11.%E4%BA%91%E6%95%B0%E6%8D%AE%E5%BA%93/">云数据库</a></li><li class="post-list-item"><a class="post-list-link" href="/the-solution-for-writing">写作需求的解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/%E6%8B%BE%E6%91%98/2015-10-11.%E6%96%87%E8%A8%80%E6%96%87Perl%E7%BC%96%E7%A8%8B%E5%86%99%E8%AF%97by%E5%94%90%E5%87%A4(%E5%94%90%E5%AE%97%E6%B1%89)/">唐凤(唐宗汉)文言文Perl编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/10/%E6%8B%BE%E6%91%98/2015-10-10.The%20Secret%20World%20of%20WDMA%20Sites/">The Secret World of WDMA Sites</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script></div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2014-2021 卮客
+                <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn">辽ICP备15012582-16</a>
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            
+            </div>
+            <div class="footer">
+                <a target="_blank" rel="noopener" href="https://www.upyun.com">
+                    <img src="./images/upyun-logo-60.png" />
+                </a>
+            <br/>提供支持
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+    
+<script src="/js/GithubRepoWidget.js"></script>
+
+
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 6;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-131531271-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+             github: ".github-widget a", 
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+    <script>
+        var originTitle = document.title;
+        var titleTime;
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                clearTimeout(titleTime);
+            }
+            else {
+                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                titleTime = setTimeout(function() {
+                    document.title = originTitle;
+                }, 2000);
+            }
+        })
+    </script>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//browsehappy.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="卮客" />
+
+
+     
+        <meta name="baidu-site-verification" content="vakk2g9ve5" />
+    
+     
+        <meta name="google-site-verification" content="u5Ae4YVsY4uAkgq5aU6rFKdy9kVDCUajshuCtsdUlIw" />
+    
+
+
+<meta name="description" content="技术总结,学术研究,生活感悟,读书笔记,影评">
+<meta property="og:type" content="website">
+<meta property="og:title" content="卮客杂俎">
+<meta property="og:url" content="https://www.zhiiker.com/page/3/index.html">
+<meta property="og:site_name" content="卮客杂俎">
+<meta property="og:description" content="技术总结,学术研究,生活感悟,读书笔记,影评">
+<meta property="og:locale">
+<meta property="article:author" content="卮客">
+<meta name="twitter:card" content="summary">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="卮客杂俎" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/images/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+    <style> .article { opacity: 0;} </style>
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>卮客杂俎</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: true,
+        isPost: false,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579834e01a3c7cec"></script>
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?cb203f30c887d436558853df2a128830";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/images/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">undefined</a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">分类&amp;标签</a></li>
+                        
+                            <li><a target="_blank" rel="noopener" href="https://www.bitcook.org">BitCook</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:&#105;&#109;&#64;&#122;&#104;&#105;&#105;&#107;&#101;&#114;&#46;&#99;&#111;&#109;" title="Email"></a>
+                            
+                                <a class="fa RSS" href="http://www.zhiiker.com/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa GitHub" target="_blank" rel="noopener" href="https://github.com/zhiiker" title="GitHub"></a>
+                            
+                                <a class="fa Quora" target="_blank" rel="noopener" href="https://www.quora.com/profile/Shichao-Liang-1" title="Quora"></a>
+                            
+                                <a class="fa Medium" target="_blank" rel="noopener" href="https://medium.com/@zhiiker" title="Medium"></a>
+                            
+                                <a class="fa Coding" target="_blank" rel="noopener" href="https://dev.tencent.com/u/zhiiker" title="Coding"></a>
+                            
+                                <a class="fa V2EX" target="_blank" rel="noopener" href="https://www.v2ex.com/member/zhiiker" title="V2EX"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" rel="noopener" href="http://weibo.com/tobechaos" title="新浪微博"></a>
+                            
+                                <a class="fa 知乎" target="_blank" rel="noopener" href="https://www.zhihu.com/people/liangshichao" title="知乎"></a>
+                            
+                                <a class="fa 豆瓣" target="_blank" rel="noopener" href="https://www.douban.com/people/tobechaos/" title="豆瓣"></a>
+                            
+                                <a class="fa 简书" target="_blank" rel="noopener" href="http://www.jianshu.com/u/d5add3cb2d34" title="简书"></a>
+                            
+                                <a class="fa SegmentFault" target="_blank" rel="noopener" href="https://segmentfault.com/u/zhiiker" title="SegmentFault"></a>
+                            
+                                <a class="fa 博客园" target="_blank" rel="noopener" href="https://www.cnblogs.com/zhiiker" title="博客园"></a>
+                            
+                                <a class="fa CSDN" target="_blank" rel="noopener" href="http://my.csdn.net/zhiiker" title="CSDN"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" rel="noopener" href="http://music.163.com/#/user/home?id=72587395" title="网易云音乐"></a>
+                            
+                                <a class="fa bilibili" target="_blank" rel="noopener" href="https://space.bilibili.com/953543/" title="bilibili"></a>
+                            
+                                <a class="fa Facebook" target="_blank" rel="noopener" href="https://www.facebook.com/realshichao" title="Facebook"></a>
+                            
+                                <a class="fa Twitter" target="_blank" rel="noopener" href="https://twitter.com/zhiiker" title="Twitter"></a>
+                            
+                                <a class="fa LinkedIn" target="_blank" rel="noopener" href="https://cn.linkedin.com/in/liangshichao" title="LinkedIn"></a>
+                            
+                                <a class="fa QQ" target="_blank" rel="noopener" href="https://images.liangs.me/avatars/qrcode_1521369601487.jpg" title="QQ"></a>
+                            
+                                <a class="fa PayPal" target="_blank" rel="noopener" href="https://paypal.me/realshichao" title="PayPal"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" rel="noopener" href="https://stackoverflow.com/users/4978576/zhiiker" title="StackOverflow"></a>
+                            
+                                <a class="fa reddit" target="_blank" rel="noopener" href="https://www.reddit.com/user/zhiiker/" title="reddit"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU/" rel="tag">CPU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dropbox/" rel="tag">Dropbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gitbub/" rel="tag">Gitbub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ICPC/" rel="tag">ICPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Incrond/" rel="tag">Incrond</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/J2EE/" rel="tag">J2EE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSP/" rel="tag">JSP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/" rel="tag">Oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shadowsocks/" rel="tag">Shadowsocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmd/" rel="tag">cmd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/" rel="tag">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dropbox/" rel="tag">dropbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/incron/" rel="tag">incron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oss/" rel="tag">oss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ossfs/" rel="tag">ossfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/seafile/" rel="tag">seafile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/supervisor/" rel="tag">supervisor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vps/" rel="tag">vps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B9%A6%E9%98%81/" rel="tag">书阁</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%91%E7%9B%98/" rel="tag">云盘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%99%E4%BD%9C/" rel="tag">写作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%AE%E5%AE%A2/" rel="tag">卮客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%AE%E8%A8%80/" rel="tag">卮言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%8C%E4%BD%99/" rel="tag">同余</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%8D%E5%8F%B7/" rel="tag">名号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%8D%E5%AD%97/" rel="tag">名字</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%87%E5%BF%98/" rel="tag">备忘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4/" rel="tag">复制粘贴</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BB%BA%E7%AB%99/" rel="tag">建站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97/" rel="tag">建站日志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/" rel="tag">开机启动</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%8B%E8%AF%95/" rel="tag">测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AB%AF%E5%8F%A3/" rel="tag">端口</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B4%A0%E6%8B%93%E7%BD%91/" rel="tag">素拓网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%84%E8%AE%BA/" rel="tag">评论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6/" rel="tag">读书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B4%A8%E6%95%B0/" rel="tag">质数</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://pages.github.com">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="http://moxfive.xyz">MOxFIVE</a>
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://feigong.tech">非工科技</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">Explorer Developer Innovator Cypherpunk Cosmopolitan Transhumanist Neuroexistentialist Extropist Philosophy-Enthusiast NeuroScience-Fancier me@zkr.pub</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">undefined</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/images/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">undefined</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">分类&amp;标签</a></li>
+                
+                    <li><a target="_blank" rel="noopener" href="https://www.bitcook.org">BitCook</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:&#105;&#109;&#64;&#122;&#104;&#105;&#105;&#107;&#101;&#114;&#46;&#99;&#111;&#109;" title="Email"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="http://www.zhiiker.com/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/zhiiker" title="GitHub"></a>
+                            
+                                <a class="fa Quora" target="_blank" href="https://www.quora.com/profile/Shichao-Liang-1" title="Quora"></a>
+                            
+                                <a class="fa Medium" target="_blank" href="https://medium.com/@zhiiker" title="Medium"></a>
+                            
+                                <a class="fa Coding" target="_blank" href="https://dev.tencent.com/u/zhiiker" title="Coding"></a>
+                            
+                                <a class="fa V2EX" target="_blank" href="https://www.v2ex.com/member/zhiiker" title="V2EX"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/tobechaos" title="新浪微博"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/liangshichao" title="知乎"></a>
+                            
+                                <a class="fa 豆瓣" target="_blank" href="https://www.douban.com/people/tobechaos/" title="豆瓣"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="http://www.jianshu.com/u/d5add3cb2d34" title="简书"></a>
+                            
+                                <a class="fa SegmentFault" target="_blank" href="https://segmentfault.com/u/zhiiker" title="SegmentFault"></a>
+                            
+                                <a class="fa 博客园" target="_blank" href="https://www.cnblogs.com/zhiiker" title="博客园"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://my.csdn.net/zhiiker" title="CSDN"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#/user/home?id=72587395" title="网易云音乐"></a>
+                            
+                                <a class="fa bilibili" target="_blank" href="https://space.bilibili.com/953543/" title="bilibili"></a>
+                            
+                                <a class="fa Facebook" target="_blank" href="https://www.facebook.com/realshichao" title="Facebook"></a>
+                            
+                                <a class="fa Twitter" target="_blank" href="https://twitter.com/zhiiker" title="Twitter"></a>
+                            
+                                <a class="fa LinkedIn" target="_blank" href="https://cn.linkedin.com/in/liangshichao" title="LinkedIn"></a>
+                            
+                                <a class="fa QQ" target="_blank" href="https://images.liangs.me/avatars/qrcode_1521369601487.jpg" title="QQ"></a>
+                            
+                                <a class="fa PayPal" target="_blank" href="https://paypal.me/realshichao" title="PayPal"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="https://stackoverflow.com/users/4978576/zhiiker" title="StackOverflow"></a>
+                            
+                                <a class="fa reddit" target="_blank" href="https://www.reddit.com/user/zhiiker/" title="reddit"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap">
+  
+    <article id="post-笔记/2017-07-17.fs.SyncWriteStream is deprecated" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/07/17/%E7%AC%94%E8%AE%B0/2017-07-17.fs.SyncWriteStream%20is%20deprecated/" class="article-date">
+      <time datetime="2017-07-16T16:00:00.000Z" itemprop="datePublished">2017-07-17</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/17/%E7%AC%94%E8%AE%B0/2017-07-17.fs.SyncWriteStream%20is%20deprecated/">fs.SyncWriteStream is deprecated</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>出现这个错误需要更新hexo-fs插件<br>使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-fs --save</span><br></pre></td></tr></table></figure>
+<p>解决后又出现了问题<br>查阅<a target="_blank" rel="noopener" href="http://rangerzhou.top/2017/07/27/Hexo%E5%8D%9A%E5%AE%A2%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">http://rangerzhou.top/2017/07/27/Hexo%E5%8D%9A%E5%AE%A2%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</a><br>解决</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2017/07/17/%E7%AC%94%E8%AE%B0/2017-07-17.fs.SyncWriteStream%20is%20deprecated/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-笔记/2017-07-11.使用Seafile+ossfs+oss搭建属于自己的私有云盘" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/07/12/%E7%AC%94%E8%AE%B0/2017-07-11.%E4%BD%BF%E7%94%A8Seafile+ossfs+oss%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E7%A7%81%E6%9C%89%E4%BA%91%E7%9B%98/" class="article-date">
+      <time datetime="2017-07-12T13:37:28.000Z" itemprop="datePublished">2017-07-12</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/12/%E7%AC%94%E8%AE%B0/2017-07-11.%E4%BD%BF%E7%94%A8Seafile+ossfs+oss%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E7%A7%81%E6%9C%89%E4%BA%91%E7%9B%98/">使用Seafile+ossfs+oss搭建属于自己的私有云盘</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>在今年2月份左右写了一篇<a target="_blank" rel="noopener" href="https://bavel.top/post/notes/2017-02-24.da-jian-zi-ji-de-si-you-yun-pan">博客</a>，但是略潦草，现在重新实现，重新写一篇博客。</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="VPS"><a href="#VPS" class="headerlink" title="VPS"></a>VPS</h3><p>这里使用的是便宜的腾讯云学生机，Ubuntu14.04LTS 64bit系统。</p>
+<h3 id="OSS"><a href="#OSS" class="headerlink" title="OSS"></a>OSS</h3><p>阿里有赠送OSS流量的活动，单独买40G/年的服务也不贵。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oss/" rel="tag">oss</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ossfs/" rel="tag">ossfs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/seafile/" rel="tag">seafile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%91%E7%9B%98/" rel="tag">云盘</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2017/07/12/%E7%AC%94%E8%AE%B0/2017-07-11.%E4%BD%BF%E7%94%A8Seafile+ossfs+oss%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E7%A7%81%E6%9C%89%E4%BA%91%E7%9B%98/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-笔记/2017-07-11.升级Seafile到专业版" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/07/11/%E7%AC%94%E8%AE%B0/2017-07-11.%E5%8D%87%E7%BA%A7Seafile%E5%88%B0%E4%B8%93%E4%B8%9A%E7%89%88/" class="article-date">
+      <time datetime="2017-07-11T10:29:36.000Z" itemprop="datePublished">2017-07-11</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/11/%E7%AC%94%E8%AE%B0/2017-07-11.%E5%8D%87%E7%BA%A7Seafile%E5%88%B0%E4%B8%93%E4%B8%9A%E7%89%88/">升级Seafile到专业版，更换端口，开机启动</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="安装-Java-运行时环境-JRE"><a href="#安装-Java-运行时环境-JRE" class="headerlink" title="安装 Java 运行时环境 (JRE)"></a>安装 Java 运行时环境 (JRE)</h3><p>如果您的系统环境是 Ubuntu 或者 Debian，执行以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openjdk-7-jre</span><br></pre></td></tr></table></figure>
+<p>如果您的系统环境是 CentOS 或者 Red Hat，执行以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install java-1.7.0-openjdk</span><br></pre></td></tr></table></figure>
+<p>注意：您也可以使用 Oracle JRE.<br>注意：Seafile 专业版需要 java 1.7 以上版本, 请用 java -version 命令查看您系统中的默认 java 版本. 如果不是 java 7, 那么, 请 更新默认 java 版本。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/seafile/" rel="tag">seafile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/" rel="tag">开机启动</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AB%AF%E5%8F%A3/" rel="tag">端口</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2017/07/11/%E7%AC%94%E8%AE%B0/2017-07-11.%E5%8D%87%E7%BA%A7Seafile%E5%88%B0%E4%B8%93%E4%B8%9A%E7%89%88/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-笔记/2017-03-20.JSP与Servlet之间传值" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/03/20/%E7%AC%94%E8%AE%B0/2017-03-20.JSP%E4%B8%8EServlet%E4%B9%8B%E9%97%B4%E4%BC%A0%E5%80%BC/" class="article-date">
+      <time datetime="2017-03-19T17:13:57.000Z" itemprop="datePublished">2017-03-20</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/20/%E7%AC%94%E8%AE%B0/2017-03-20.JSP%E4%B8%8EServlet%E4%B9%8B%E9%97%B4%E4%BC%A0%E5%80%BC/">JSP与Servlet之间传值</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>Jsp与Servlet之间的传值有两种，一种是Jsp传值给Sevlet，另一种是Servlet传值给Jsp；使用request、response对象完成传值，具体实现如下：</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/J2EE/" rel="tag">J2EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JSP/" rel="tag">JSP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2017/03/20/%E7%AC%94%E8%AE%B0/2017-03-20.JSP%E4%B8%8EServlet%E4%B9%8B%E9%97%B4%E4%BC%A0%E5%80%BC/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-笔记/2017-03-19.Linux 下执行定时任务 crontab 命令详解" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/03/19/%E7%AC%94%E8%AE%B0/2017-03-19.Linux%20%E4%B8%8B%E6%89%A7%E8%A1%8C%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%20crontab%20%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/" class="article-date">
+      <time datetime="2017-03-19T13:12:30.000Z" itemprop="datePublished">2017-03-19</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/19/%E7%AC%94%E8%AE%B0/2017-03-19.Linux%20%E4%B8%8B%E6%89%A7%E8%A1%8C%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%20crontab%20%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/">Linux 下执行定时任务 crontab 命令详解</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="1、先来一个小小的例子"><a href="#1、先来一个小小的例子" class="headerlink" title="1、先来一个小小的例子"></a>1、先来一个小小的例子</h2><p>查看当前路径：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@root test]# pwd</span><br><span class="line">/home/admin/test </span><br><span class="line">[root@root test]# crontab -l</span><br></pre></td></tr></table></figure>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/crontab/" rel="tag">crontab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2017/03/19/%E7%AC%94%E8%AE%B0/2017-03-19.Linux%20%E4%B8%8B%E6%89%A7%E8%A1%8C%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%20crontab%20%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-笔记/2017-02-22.个人名称-引用的一些出处" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/02/22/%E7%AC%94%E8%AE%B0/2017-02-22.%E4%B8%AA%E4%BA%BA%E5%90%8D%E7%A7%B0-%E5%BC%95%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E5%87%BA%E5%A4%84/" class="article-date">
+      <time datetime="2017-02-22T00:18:59.000Z" itemprop="datePublished">2017-02-22</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/22/%E7%AC%94%E8%AE%B0/2017-02-22.%E4%B8%AA%E4%BA%BA%E5%90%8D%E7%A7%B0-%E5%BC%95%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E5%87%BA%E5%A4%84/">个人名称、引用的一些出处</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p><strong>萱苏始无慰，寂寞终可期。</strong><br>参见下面的链接:<br><a target="_blank" rel="noopener" href="http://www.xuansu.org/2016/08/%E9%83%A1%E4%B8%9C%E5%B1%B1%E6%9C%9B%E6%BA%9F%E6%B5%B7%E8%AF%97/">《郡东山望溟海》</a></p>
+<p>　　本来站点取作“萱苏小筑”是因为《大秦帝国》中的萱苏客栈印象很深，之后查了下“萱苏”发现很符合自己的状态：重新思考自己的人生之路，重新寻求人生的归宿与心灵的安顿。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%87%E5%BF%98/" rel="tag">备忘</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2017/02/22/%E7%AC%94%E8%AE%B0/2017-02-22.%E4%B8%AA%E4%BA%BA%E5%90%8D%E7%A7%B0-%E5%BC%95%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E5%87%BA%E5%A4%84/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-笔记/2016-11-23.oracle中关于单引号和双引号的问题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/23/%E7%AC%94%E8%AE%B0/2016-11-23.oracle%E4%B8%AD%E5%85%B3%E4%BA%8E%E5%8D%95%E5%BC%95%E5%8F%B7%E5%92%8C%E5%8F%8C%E5%BC%95%E5%8F%B7%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-date">
+      <time datetime="2016-11-23T07:50:12.000Z" itemprop="datePublished">2016-11-23</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/23/%E7%AC%94%E8%AE%B0/2016-11-23.oracle%E4%B8%AD%E5%85%B3%E4%BA%8E%E5%8D%95%E5%BC%95%E5%8F%B7%E5%92%8C%E5%8F%8C%E5%BC%95%E5%8F%B7%E7%9A%84%E9%97%AE%E9%A2%98/">oracle中关于单引号和双引号的问题</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>在Oracle中：<br>　　双引号的作用是：假如建立对象的时候，对象名、字段名加双引号，则示意 Oracle将严格区分大小写，否则Oracl都默认大写。<br>　　而单引号则示意：这个加了单引号的字段是一个字类似字符串，并不区分大小写。<br>单引号用于标识字符与数字的区别<br>　　当指定字符串文本时，必须用单引号将字符串文本引住。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Oracle/">Oracle</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/" rel="tag">Oracle</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2016/11/23/%E7%AC%94%E8%AE%B0/2016-11-23.oracle%E4%B8%AD%E5%85%B3%E4%BA%8E%E5%8D%95%E5%BC%95%E5%8F%B7%E5%92%8C%E5%8F%8C%E5%BC%95%E5%8F%B7%E7%9A%84%E9%97%AE%E9%A2%98/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-笔记/2016-11-16.笔记编辑工具的最后选择" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/16/%E7%AC%94%E8%AE%B0/2016-11-16.%E7%AC%94%E8%AE%B0%E7%BC%96%E8%BE%91%E5%B7%A5%E5%85%B7%E7%9A%84%E6%9C%80%E5%90%8E%E9%80%89%E6%8B%A9/" class="article-date">
+      <time datetime="2016-11-16T03:05:36.000Z" itemprop="datePublished">2016-11-16</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/16/%E7%AC%94%E8%AE%B0/2016-11-16.%E7%AC%94%E8%AE%B0%E7%BC%96%E8%BE%91%E5%B7%A5%E5%85%B7%E7%9A%84%E6%9C%80%E5%90%8E%E9%80%89%E6%8B%A9/">最终的写作解决方案</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="最终解决方案"><a href="#最终解决方案" class="headerlink" title="最终解决方案"></a>最终解决方案</h2><p>前两天整理Farbox上的内容时候，想到了MarkEditor编辑器，想看看现在变成什么样子了，下载开始试用，发现可以直接绑定第三方云，日志和图片直接可以上传到绑定的云端，功能上较Farbox的编辑器明显优化了很多。FileHotst功能可以直接发布到静态博客。</p>
+<h2 id="最优化的方案"><a href="#最优化的方案" class="headerlink" title="最优化的方案"></a>最优化的方案</h2><p>放弃使用Farbox自带的编辑器，使用Dropbox作为同步方案。<br>同时提交到Github和Coding上，使用MarkEditor编辑Markdown文件，对应同步到Farbox和Hexo的文件夹。<br>并且开启Admin后端</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2016/11/16/%E7%AC%94%E8%AE%B0/2016-11-16.%E7%AC%94%E8%AE%B0%E7%BC%96%E8%BE%91%E5%B7%A5%E5%85%B7%E7%9A%84%E6%9C%80%E5%90%8E%E9%80%89%E6%8B%A9/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-笔记/2016-11-16.use_case-when_implement_if-then-else_logic" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/16/%E7%AC%94%E8%AE%B0/2016-11-16.use_case-when_implement_if-then-else_logic/" class="article-date">
+      <time datetime="2016-11-15T16:00:00.000Z" itemprop="datePublished">2016-11-16</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/16/%E7%AC%94%E8%AE%B0/2016-11-16.use_case-when_implement_if-then-else_logic/">使用case-when实现if-then-else逻辑</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--类似创建表</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> empcp  <span class="keyword">as</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp  <span class="keyword">where</span> <span class="number">1</span><span class="operator">=</span><span class="number">1</span>;</span><br><span class="line"><span class="comment">--1=2无数据</span></span><br><span class="line"></span><br><span class="line"><span class="operator">&lt;</span><span class="operator">!</span><span class="comment">-- more --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">declare</span></span><br><span class="line">v_emp empcp<span class="operator">%</span>rowtype;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">	<span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">into</span> v_emp <span class="keyword">from</span> empcp <span class="keyword">where</span> ename<span class="operator">=</span><span class="string">&#x27;&amp;雇员名&#x27;</span>;</span><br><span class="line"><span class="keyword">case</span> v_emp.job</span><br><span class="line"><span class="keyword">when</span> <span class="string">&#x27;CLERK&#x27;</span> <span class="keyword">then</span></span><br><span class="line">    update empcp <span class="keyword">set</span> sal<span class="operator">=</span>sal<span class="operator">+</span><span class="number">500</span> <span class="keyword">where</span> empno<span class="operator">=</span>v_emp.empno;</span><br><span class="line"><span class="keyword">when</span> <span class="string">&#x27;SALESMAN&#x27;</span> <span class="keyword">then</span></span><br><span class="line">    update empcp <span class="keyword">set</span> sal<span class="operator">=</span>sal<span class="operator">+</span><span class="number">1000</span> <span class="keyword">where</span> empno<span class="operator">=</span>v_emp.empno;</span><br><span class="line"><span class="keyword">when</span> <span class="string">&#x27;ANALYST&#x27;</span> <span class="keyword">then</span></span><br><span class="line">    update empcp <span class="keyword">set</span> sal<span class="operator">=</span>sal<span class="operator">+</span><span class="number">1500</span> <span class="keyword">where</span> empno<span class="operator">=</span>v_emp.empno;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    update empcp <span class="keyword">set</span> sal<span class="operator">=</span>sal<span class="operator">+</span><span class="number">2000</span> <span class="keyword">where</span> empno<span class="operator">=</span>v_emp.empno;</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">case</span>;</span><br><span class="line"><span class="keyword">commit</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"><span class="operator">/</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Oracle/">Oracle</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/" rel="tag">Oracle</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-笔记/2016-09-29.如何在Linux中创建一个交换文件" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/29/%E7%AC%94%E8%AE%B0/2016-09-29.%E5%A6%82%E4%BD%95%E5%9C%A8Linux%E4%B8%AD%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%BA%A4%E6%8D%A2%E6%96%87%E4%BB%B6/" class="article-date">
+      <time datetime="2016-09-28T17:13:35.000Z" itemprop="datePublished">2016-09-29</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/29/%E7%AC%94%E8%AE%B0/2016-09-29.%E5%A6%82%E4%BD%95%E5%9C%A8Linux%E4%B8%AD%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%BA%A4%E6%8D%A2%E6%96%87%E4%BB%B6/">如何在Linux中创建一个交换文件</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>当程序需要的内存比电脑上拥有的物理内存还要大的时候，不管是 Windows 也好，Linux 也好，解决办法就是把存不下的东西转移到硬盘上的“虚拟内存”中去，尽管硬盘的速度比内存慢上很多，但是至少容量要大上很多。</p>
+<p>另外，操作系统也可以把一些很久不活动的程序转移到虚拟内存中去，留出更多的主内存给需要的程序和磁盘缓冲。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2016/09/29/%E7%AC%94%E8%AE%B0/2016-09-29.%E5%A6%82%E4%BD%95%E5%9C%A8Linux%E4%B8%AD%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%BA%A4%E6%8D%A2%E6%96%87%E4%BB%B6/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
+    </nav>
+  
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2014-2021 卮客
+                <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn">辽ICP备15012582-16</a>
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            
+            </div>
+            <div class="footer">
+                <a target="_blank" rel="noopener" href="https://www.upyun.com">
+                    <img src="./images/upyun-logo-60.png" />
+                </a>
+            <br/>提供支持
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+    
+<script src="/js/GithubRepoWidget.js"></script>
+
+
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 6;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+    
+
+     
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-131531271-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+             github: ".github-widget a", 
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+    <script>
+        var originTitle = document.title;
+        var titleTime;
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                clearTimeout(titleTime);
+            }
+            else {
+                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                titleTime = setTimeout(function() {
+                    document.title = originTitle;
+                }, 2000);
+            }
+        })
+    </script>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

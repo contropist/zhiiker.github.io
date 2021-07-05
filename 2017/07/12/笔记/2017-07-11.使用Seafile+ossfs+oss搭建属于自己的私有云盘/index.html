@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//browsehappy.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="卮客" />
+
+
+
+<meta name="description" content="在今年2月份左右写了一篇博客，但是略潦草，现在重新实现，重新写一篇博客。 准备工作VPS这里使用的是便宜的腾讯云学生机，Ubuntu14.04LTS 64bit系统。 OSS阿里有赠送OSS流量的活动，单独买40G&#x2F;年的服务也不贵。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Seafile+ossfs+oss搭建属于自己的私有云盘">
+<meta property="og:url" content="https://www.zhiiker.com/2017/07/12/%E7%AC%94%E8%AE%B0/2017-07-11.%E4%BD%BF%E7%94%A8Seafile+ossfs+oss%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E7%A7%81%E6%9C%89%E4%BA%91%E7%9B%98/index.html">
+<meta property="og:site_name" content="卮客杂俎">
+<meta property="og:description" content="在今年2月份左右写了一篇博客，但是略潦草，现在重新实现，重新写一篇博客。 准备工作VPS这里使用的是便宜的腾讯云学生机，Ubuntu14.04LTS 64bit系统。 OSS阿里有赠送OSS流量的活动，单独买40G&#x2F;年的服务也不贵。">
+<meta property="og:locale">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/bced3e29b34639325f98d7b4d0f3263c_8754f030c45ed7d84efdf69cc788ba1a_2017-02-24-12-27-49.png">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/3d7c9429b351652110d8aa46363eda65_6f6ee45142b5088e54cbd1c80531c06d_2017-07-12-20-55-44.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/3f963cdb2b82174bef0d87ad427272bb_ed3529c9e5b16bc1db07804ba65d1395_2017-07-12-20-56-53.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/1304064715ad572e9825bf5af19425d8_ffd4b17501cd80f02ab95fa80d4f1e57_2017-07-12-20-58-23.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/6252a6962d2d60b8009fb188ff3e1a12_5da9a9cdee0dfcb884620cda53079d8f_2017-07-12-21-00-11.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/1a56a0d574ec1244b254eca057e23677_a920eed2e55fc887e42331b4633b9dbf_2017-07-12-21-01-28.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/3571e25afa38ff222a15c29370b592ca_b2cb523f463e26761489bc91852adabe_ceee0c90486619696c3c19dfdf02026a_attach15.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/238404fa0029faf8c74f262195278217_9fe0b55fff88e0913f44c64f78d37f41_2017-07-12-21-16-22.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/775ba80384b311a6664deef0120e2da8_3538cb7877d98a2949fd1f266c74aab4_2017-07-12-21-18-33.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/7a0f6c73ed8e3817243efcbb7d9f15aa_b7b4e5dd90ed7a716b679d68312eaac1_2017-07-12-21-20-40.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/d96a9c03a403f2c01f2605b7c73c4fa3_d8db42d0983b0be6fa60c8aa9731ade2_2017-07-12-21-24-38.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/b987ebf1e88a34170a79880f66cfe125_4308bd8b67334ae30f792db6b6702aea_2017-07-12-21-27-09.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/3fdc719e38b3baccd5ca1916c5c1cbd7_4f16071998821285abf5b22466e59748_2017-07-12-21-27-22.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/82e57d1d7faa1f6db4d24fc50c54229e_4cea837ff4f043daa19f9dcecc227fbc_2017-07-12-21-27-52.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/ac88be8579543caee52335f94c3bc7d3_4e7819c890f670c271025bfa46f9a584_2017-07-12-21-29-29.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/e1ae6095d0dcf321e7576fd7e9f71cd3_be9f5c51adaad1fcc4fb03e11d00b441_2017-07-12-21-31-09.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/8ab9aaf779596396dc6d3ad4896ac710_9ed22485a72166d4a3fcf6f5dfb19157_2017-07-12-21-32-42.jpg">
+<meta property="og:image" content="https://images.liangs.me/bitcron/Notes/_image/2a66d00b40816c1f34818e60b0a6a5fc_45095ee4af3d434a14a69bd2c667abc8_2017-07-12-21-34-24.jpg">
+<meta property="article:published_time" content="2017-07-12T13:37:28.000Z">
+<meta property="article:modified_time" content="2017-07-17T05:31:37.000Z">
+<meta property="article:author" content="卮客">
+<meta property="article:tag" content="seafile">
+<meta property="article:tag" content="云盘">
+<meta property="article:tag" content="oss">
+<meta property="article:tag" content="ossfs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.liangs.me/bitcron/Notes/_image/bced3e29b34639325f98d7b4d0f3263c_8754f030c45ed7d84efdf69cc788ba1a_2017-02-24-12-27-49.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="卮客杂俎" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/images/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>使用Seafile+ossfs+oss搭建属于自己的私有云盘 | 卮客杂俎</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579834e01a3c7cec"></script>
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?cb203f30c887d436558853df2a128830";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/images/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">undefined</a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">分类&amp;标签</a></li>
+                        
+                            <li><a target="_blank" rel="noopener" href="https://www.bitcook.org">BitCook</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:&#105;&#109;&#64;&#122;&#104;&#105;&#105;&#107;&#101;&#114;&#46;&#99;&#111;&#109;" title="Email"></a>
+                            
+                                <a class="fa RSS" href="http://www.zhiiker.com/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa GitHub" target="_blank" rel="noopener" href="https://github.com/zhiiker" title="GitHub"></a>
+                            
+                                <a class="fa Quora" target="_blank" rel="noopener" href="https://www.quora.com/profile/Shichao-Liang-1" title="Quora"></a>
+                            
+                                <a class="fa Medium" target="_blank" rel="noopener" href="https://medium.com/@zhiiker" title="Medium"></a>
+                            
+                                <a class="fa Coding" target="_blank" rel="noopener" href="https://dev.tencent.com/u/zhiiker" title="Coding"></a>
+                            
+                                <a class="fa V2EX" target="_blank" rel="noopener" href="https://www.v2ex.com/member/zhiiker" title="V2EX"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" rel="noopener" href="http://weibo.com/tobechaos" title="新浪微博"></a>
+                            
+                                <a class="fa 知乎" target="_blank" rel="noopener" href="https://www.zhihu.com/people/liangshichao" title="知乎"></a>
+                            
+                                <a class="fa 豆瓣" target="_blank" rel="noopener" href="https://www.douban.com/people/tobechaos/" title="豆瓣"></a>
+                            
+                                <a class="fa 简书" target="_blank" rel="noopener" href="http://www.jianshu.com/u/d5add3cb2d34" title="简书"></a>
+                            
+                                <a class="fa SegmentFault" target="_blank" rel="noopener" href="https://segmentfault.com/u/zhiiker" title="SegmentFault"></a>
+                            
+                                <a class="fa 博客园" target="_blank" rel="noopener" href="https://www.cnblogs.com/zhiiker" title="博客园"></a>
+                            
+                                <a class="fa CSDN" target="_blank" rel="noopener" href="http://my.csdn.net/zhiiker" title="CSDN"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" rel="noopener" href="http://music.163.com/#/user/home?id=72587395" title="网易云音乐"></a>
+                            
+                                <a class="fa bilibili" target="_blank" rel="noopener" href="https://space.bilibili.com/953543/" title="bilibili"></a>
+                            
+                                <a class="fa Facebook" target="_blank" rel="noopener" href="https://www.facebook.com/realshichao" title="Facebook"></a>
+                            
+                                <a class="fa Twitter" target="_blank" rel="noopener" href="https://twitter.com/zhiiker" title="Twitter"></a>
+                            
+                                <a class="fa LinkedIn" target="_blank" rel="noopener" href="https://cn.linkedin.com/in/liangshichao" title="LinkedIn"></a>
+                            
+                                <a class="fa QQ" target="_blank" rel="noopener" href="https://images.liangs.me/avatars/qrcode_1521369601487.jpg" title="QQ"></a>
+                            
+                                <a class="fa PayPal" target="_blank" rel="noopener" href="https://paypal.me/realshichao" title="PayPal"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" rel="noopener" href="https://stackoverflow.com/users/4978576/zhiiker" title="StackOverflow"></a>
+                            
+                                <a class="fa reddit" target="_blank" rel="noopener" href="https://www.reddit.com/user/zhiiker/" title="reddit"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU/" rel="tag">CPU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dropbox/" rel="tag">Dropbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gitbub/" rel="tag">Gitbub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ICPC/" rel="tag">ICPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Incrond/" rel="tag">Incrond</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/J2EE/" rel="tag">J2EE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSP/" rel="tag">JSP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/" rel="tag">Oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shadowsocks/" rel="tag">Shadowsocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmd/" rel="tag">cmd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/" rel="tag">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dropbox/" rel="tag">dropbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/incron/" rel="tag">incron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oss/" rel="tag">oss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ossfs/" rel="tag">ossfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/seafile/" rel="tag">seafile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/supervisor/" rel="tag">supervisor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vps/" rel="tag">vps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B9%A6%E9%98%81/" rel="tag">书阁</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%91%E7%9B%98/" rel="tag">云盘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%99%E4%BD%9C/" rel="tag">写作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%AE%E5%AE%A2/" rel="tag">卮客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%AE%E8%A8%80/" rel="tag">卮言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%8C%E4%BD%99/" rel="tag">同余</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%8D%E5%8F%B7/" rel="tag">名号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%8D%E5%AD%97/" rel="tag">名字</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%87%E5%BF%98/" rel="tag">备忘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4/" rel="tag">复制粘贴</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BB%BA%E7%AB%99/" rel="tag">建站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97/" rel="tag">建站日志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/" rel="tag">开机启动</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%8B%E8%AF%95/" rel="tag">测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AB%AF%E5%8F%A3/" rel="tag">端口</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B4%A0%E6%8B%93%E7%BD%91/" rel="tag">素拓网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%84%E8%AE%BA/" rel="tag">评论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6/" rel="tag">读书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B4%A8%E6%95%B0/" rel="tag">质数</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://pages.github.com">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="http://moxfive.xyz">MOxFIVE</a>
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://feigong.tech">非工科技</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">Explorer Developer Innovator Cypherpunk Cosmopolitan Transhumanist Neuroexistentialist Extropist Philosophy-Enthusiast NeuroScience-Fancier me@zkr.pub</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">undefined</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/images/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">undefined</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">分类&amp;标签</a></li>
+                
+                    <li><a target="_blank" rel="noopener" href="https://www.bitcook.org">BitCook</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:&#105;&#109;&#64;&#122;&#104;&#105;&#105;&#107;&#101;&#114;&#46;&#99;&#111;&#109;" title="Email"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="http://www.zhiiker.com/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/zhiiker" title="GitHub"></a>
+                            
+                                <a class="fa Quora" target="_blank" href="https://www.quora.com/profile/Shichao-Liang-1" title="Quora"></a>
+                            
+                                <a class="fa Medium" target="_blank" href="https://medium.com/@zhiiker" title="Medium"></a>
+                            
+                                <a class="fa Coding" target="_blank" href="https://dev.tencent.com/u/zhiiker" title="Coding"></a>
+                            
+                                <a class="fa V2EX" target="_blank" href="https://www.v2ex.com/member/zhiiker" title="V2EX"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/tobechaos" title="新浪微博"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/liangshichao" title="知乎"></a>
+                            
+                                <a class="fa 豆瓣" target="_blank" href="https://www.douban.com/people/tobechaos/" title="豆瓣"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="http://www.jianshu.com/u/d5add3cb2d34" title="简书"></a>
+                            
+                                <a class="fa SegmentFault" target="_blank" href="https://segmentfault.com/u/zhiiker" title="SegmentFault"></a>
+                            
+                                <a class="fa 博客园" target="_blank" href="https://www.cnblogs.com/zhiiker" title="博客园"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://my.csdn.net/zhiiker" title="CSDN"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#/user/home?id=72587395" title="网易云音乐"></a>
+                            
+                                <a class="fa bilibili" target="_blank" href="https://space.bilibili.com/953543/" title="bilibili"></a>
+                            
+                                <a class="fa Facebook" target="_blank" href="https://www.facebook.com/realshichao" title="Facebook"></a>
+                            
+                                <a class="fa Twitter" target="_blank" href="https://twitter.com/zhiiker" title="Twitter"></a>
+                            
+                                <a class="fa LinkedIn" target="_blank" href="https://cn.linkedin.com/in/liangshichao" title="LinkedIn"></a>
+                            
+                                <a class="fa QQ" target="_blank" href="https://images.liangs.me/avatars/qrcode_1521369601487.jpg" title="QQ"></a>
+                            
+                                <a class="fa PayPal" target="_blank" href="https://paypal.me/realshichao" title="PayPal"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="https://stackoverflow.com/users/4978576/zhiiker" title="StackOverflow"></a>
+                            
+                                <a class="fa reddit" target="_blank" href="https://www.reddit.com/user/zhiiker/" title="reddit"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-笔记/2017-07-11.使用Seafile+ossfs+oss搭建属于自己的私有云盘" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/07/12/%E7%AC%94%E8%AE%B0/2017-07-11.%E4%BD%BF%E7%94%A8Seafile+ossfs+oss%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E7%A7%81%E6%9C%89%E4%BA%91%E7%9B%98/" class="article-date">
+      <time datetime="2017-07-12T13:37:28.000Z" itemprop="datePublished">2017-07-12</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用Seafile+ossfs+oss搭建属于自己的私有云盘
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oss/" rel="tag">oss</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ossfs/" rel="tag">ossfs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/seafile/" rel="tag">seafile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%91%E7%9B%98/" rel="tag">云盘</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>在今年2月份左右写了一篇<a target="_blank" rel="noopener" href="https://bavel.top/post/notes/2017-02-24.da-jian-zi-ji-de-si-you-yun-pan">博客</a>，但是略潦草，现在重新实现，重新写一篇博客。</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="VPS"><a href="#VPS" class="headerlink" title="VPS"></a>VPS</h3><p>这里使用的是便宜的腾讯云学生机，Ubuntu14.04LTS 64bit系统。</p>
+<h3 id="OSS"><a href="#OSS" class="headerlink" title="OSS"></a>OSS</h3><p>阿里有赠送OSS流量的活动，单独买40G/年的服务也不贵。</p>
+<span id="more"></span>
+<h2 id="安装ossfs"><a href="#安装ossfs" class="headerlink" title="安装ossfs"></a>安装ossfs</h2><blockquote>
+<p>注意：在这之前你需要先开通oss，最好是和你的ECS是一个地区的，当然不是用的ECS也可以用，只是速度会慢一些，还有就是下载会使用公网流量，上传没有</p>
+</blockquote>
+<ol>
+<li>点击打开ossfs的下载页面下载对应系统的安装包，<a target="_blank" rel="noopener" href="https://help.aliyun.com/document_detail/32196.html">地址</a></li>
+<li>我以Ubuntu为例，安装ossfs，其他系统看官方的文档就行<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install gdebi-core</span><br></pre></td></tr></table></figure>
+下载包安装<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/32196/cn_zh/1496671441720/ossfs_1.80.2_ubuntu14.04_amd64.deb</span><br><span class="line">sudo gdebi ossfs_1.80.2_ubuntu14.04_amd64.deb</span><br></pre></td></tr></table></figure></li>
+<li>切到root权限，将<code>my-bucke</code>t这个bucket挂载到<code>/cloud</code>目录下，AccessKeyId是<code>faint</code>， AccessKeySecret是<code>123</code>，oss endpoint是<code>http://oss-cn-hangzhou.aliyuncs.com</code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo my-bucket:faint:123 &gt; /etc/passwd-ossfs</span><br><span class="line">chmod 640 /etc/passwd-ossfs</span><br><span class="line">mkdir /cloud</span><br></pre></td></tr></table></figure></li>
+<li>将OSS bucket mount到指定目录。<br>最后一步很重要，不能直接照官方文档上面的来，不然安装的时候可能会出现没有访问权限的问题。</li>
+</ol>
+<ul>
+<li>首先先看一下用户id，以我的是root为例。<br>会返回给你用户的uid和gid等等,我假设返回的uid和gid都为0<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ossfs my-bucket  my-mount-point -ourl=my-oss-endpoint -ouid=0 -ogid=0 -o allow_other -o umask=007</span><br></pre></td></tr></table></figure>
+这里面<code>allow_other</code>是允许其他用户访问，但是默认设置的是777权限这样owncloud会提示不安全，用<code>umask=007</code>挂载为770权限，不知道为啥这里0代表7,7表示0。</li>
+</ul>
+<ol start="5">
+<li>卸载bucket:<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fusermount -u /tmp/ossfs</span><br></pre></td></tr></table></figure></li>
+<li>出现的错误<br>使用<code>-f</code>进行调试。<br>“ossfs: could not determine how to establish security credentials”<br>搜索后发现文章<br><a target="_blank" rel="noopener" href="https://bbs.aliyun.com/simple/?t270049.html">（已解决）OSSfs折腾一个星期了  麻烦大大们进来看下</a><br>是因为没有找到passwd-ossfs文件，如果在~/.passwd-ossfs文件已经存在，把它的所有者改成www：<br><code>sudo chown www ~/.passwd-ossfs</code><br>后来提示用户组不对，使用<code>chgrp</code>更改用户组，权限要改成600，取消组内所有权限。<br><img src="https://images.liangs.me/bitcron/Notes/_image/bced3e29b34639325f98d7b4d0f3263c_8754f030c45ed7d84efdf69cc788ba1a_2017-02-24-12-27-49.png"><h2 id="安装Seafile"><a href="#安装Seafile" class="headerlink" title="安装Seafile"></a>安装Seafile</h2><h3 id="安装Seafile依赖关系"><a href="#安装Seafile依赖关系" class="headerlink" title="安装Seafile依赖关系"></a>安装Seafile依赖关系</h3></li>
+</ol>
+<p><strong>所列依赖关系列表</strong></p>
+<ul>
+<li>Java运行时环境（JRE）</li>
+<li>Poppler-utils</li>
+<li>Libreoffice 4.1+和Python-uno</li>
+<li>libpython 2.7</li>
+<li>Python库（确保在此安装中包含python 2.7，您可以使用图像1.2上的命令来验证，如果已经安装了该命令，如果没有，则使用此命令<code>apt-get install python 2.7 </code>，并且如果您收到“您安装需要setuptools&gt; = …“，那么您可以使用pip安装setuptools –no-use-wheel –upgrade ）。 您还需要安装使用 <code>easy_install pip</code>和<code>pip</code>安装<code>boto</code> 如图1.3和1.4所示）<br>以root用户身份运行以下命令来安装所需的软件：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install openjdk-7-jre poppler-utils libreoffice libreoffice-script-provider-python libpython2.7 python-pip mysql-server python-setuptools python-imaging python-mysqldb python-memcache</span><br></pre></td></tr></table></figure>
+在这个过程中会提示输入MySql密码，输入两次，并记住。<br>现在我将检查安装的python版本是否符合Seafile的要求：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -V</span><br></pre></td></tr></table></figure>
+正如你在屏幕截图中看到的那样，python版本是2.7.6，所以它在所支持的python版本的范围内。<br><img src="https://images.liangs.me/bitcron/Notes/_image/3d7c9429b351652110d8aa46363eda65_6f6ee45142b5088e54cbd1c80531c06d_2017-07-12-20-55-44.jpg"><br>[图像1.2]<br>接下来我将使用easy_install安装pip软件包<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">easy_install pip</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><img src="https://images.liangs.me/bitcron/Notes/_image/3f963cdb2b82174bef0d87ad427272bb_ed3529c9e5b16bc1db07804ba65d1395_2017-07-12-20-56-53.jpg"><br>[图像1.3]<br>和boto包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install boto</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://images.liangs.me/bitcron/Notes/_image/1304064715ad572e9825bf5af19425d8_ffd4b17501cd80f02ab95fa80d4f1e57_2017-07-12-20-58-23.jpg"><br>[图像1.4]<br>接下来为您的语言安装一些额外的字体（例如WenQuanYi，如果我们要使用中文）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install ttf-wqy-microhei ttf-wqy-zenhei xfonts-wqy</span><br></pre></td></tr></table></figure>
+<p><img src="https://images.liangs.me/bitcron/Notes/_image/6252a6962d2d60b8009fb188ff3e1a12_5da9a9cdee0dfcb884620cda53079d8f_2017-07-12-21-00-11.jpg"></p>
+<h3 id="用MySQL安装Seafile"><a href="#用MySQL安装Seafile" class="headerlink" title="用MySQL安装Seafile"></a>用MySQL安装Seafile</h3><p>首先，您需要验证您的系统是32位还是64位系统。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -m</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://images.liangs.me/bitcron/Notes/_image/1a56a0d574ec1244b254eca057e23677_a920eed2e55fc887e42331b4633b9dbf_2017-07-12-21-01-28.jpg"></p>
+<p>我的服务器是一个64位系统。</p>
+<p>32个或64位可以使用两种选择，这两种选项都可以在Seafile的下载页面<a target="_blank" rel="noopener" href="http://seafile.com/en/download/%E4%B8%8A%E8%8E%B7%E5%BE%97">http://seafile.com/en/download/上获得</a> 。<br> 选择自己的系统以及系统版本使用wget下载，放到/opt/目录下<br>Ubuntu 系统下载包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://seafile-downloads.oss-cn-shanghai.aliyuncs.com/seafile-server_6.0.9_x86-64.tar.gz</span><br></pre></td></tr></table></figure>
+<p>接下来，将要创建所需的目录。<br>首先，我需要创建一个目录名“ guide ”，你可以使用任何描述你的组织的名字。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /root/guide</span><br></pre></td></tr></table></figure>
+<p>然后将文件移动到我们创建的目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv seafile-server_6.0.9_x86-64.tar.gz /root/guide</span><br></pre></td></tr></table></figure>
+<p>切换到<code>/root/guide</code>目录使用<code>tar</code>命令解压</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xzf seafile-server_6.0.9_x86-64.tar.gz</span><br></pre></td></tr></table></figure>
+<p>接下来创建一个安装的目录 。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir installed</span><br></pre></td></tr></table></figure>
+<p>我们可能会将文件seafile-server_6.0.9_x86-64.tar.gz移动到安装的新创建的目录 。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv seafile-server_6.0.9_x86-64.tar.gz /installed</span><br></pre></td></tr></table></figure>
+<p>如我们的版本的目录结构所述，一切都应该在正确的位置。</p>
+<p><img src="https://images.liangs.me/bitcron/Notes/_image/3571e25afa38ff222a15c29370b592ca_b2cb523f463e26761489bc91852adabe_ceee0c90486619696c3c19dfdf02026a_attach15.jpg"></p>
+<h3 id="配置MySQL数据库"><a href="#配置MySQL数据库" class="headerlink" title="配置MySQL数据库"></a>配置MySQL数据库</h3><p>seafile由3个核心部件组成。 我们需要为这个给定的组件创建一个数据库。</p>
+<ul>
+<li>ccnet服务器</li>
+<li>seafile服务器</li>
+<li>seahub<br>现在正在为列出的给定数据库创建mysql数据库，帐户和设置权限。 （这只是一个例子，您可以在数据库名称上创建自己的设计）。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>海底部件</th>
+<th>数据库名称</th>
+<th>帐户</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ccnet服务器</td>
+<td>ccnet-db</td>
+<td>seafile</td>
+</tr>
+<tr>
+<td>seafile服务器</td>
+<td>seafile-db</td>
+<td>seafile</td>
+</tr>
+<tr>
+<td>seahub</td>
+<td>seahub-db</td>
+<td>seafile</td>
+</tr>
+<tr>
+<td>以root用户身份登录到mysql</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+<p>输入之前安装设置的MySql密码，然后在mysql shell中发出这些命令：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> database`ccnet<span class="operator">-</span>db`<span class="type">character</span> <span class="keyword">set</span> <span class="operator">=</span>utf8; </span><br><span class="line"><span class="keyword">create</span> database`seafile<span class="operator">-</span>db`<span class="type">character</span> <span class="keyword">set</span> <span class="operator">=</span>utf8; </span><br><span class="line"><span class="keyword">create</span> database`seahub<span class="operator">-</span>db`<span class="type">character</span> <span class="keyword">set</span> <span class="operator">=</span>utf8; </span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">&#x27;seafile&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;seafile&#x27;</span>;</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> privileges <span class="keyword">on</span> `ccnet<span class="operator">-</span>db`.<span class="operator">*</span> <span class="keyword">to</span> `seafile`<span class="variable">@localhost</span>;</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> privileges <span class="keyword">on</span> `seafile<span class="operator">-</span>db`.<span class="operator">*</span> <span class="keyword">to</span> `seafile`<span class="variable">@localhost</span>;</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> privileges <span class="keyword">on</span> `seahub<span class="operator">-</span>db`.<span class="operator">*</span> <span class="keyword">to</span> `seafile`<span class="variable">@localhost</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://images.liangs.me/bitcron/Notes/_image/238404fa0029faf8c74f262195278217_9fe0b55fff88e0913f44c64f78d37f41_2017-07-12-21-16-22.jpg"></p>
+<p>输入<code>exit</code>退出</p>
+<h3 id="设置seafile服务器"><a href="#设置seafile服务器" class="headerlink" title="设置seafile服务器"></a>设置seafile服务器</h3><p>所需包：</p>
+<ul>
+<li>python 2.7</li>
+<li>python-setuptools</li>
+<li>python-imaging</li>
+<li>python-mysqldb<br>通过使用此命令：（以验证其是否已安装）<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install python2.7 python-setuptools python-imaging python-mysqldb</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><img src="https://images.liangs.me/bitcron/Notes/_image/775ba80384b311a6664deef0120e2da8_3538cb7877d98a2949fd1f266c74aab4_2017-07-12-21-18-33.jpg"></p>
+<p>接下来你需要安装seafile服务器。 转到目录<code>seafile-server-6.0.9</code>然后运行脚本<code>setup-seafile-mysql.sh</code> 。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd seafile-server-6.0.9</span><br><span class="line">ls -lrt</span><br><span class="line">./setup-seafile-mysql.sh</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://images.liangs.me/bitcron/Notes/_image/7a0f6c73ed8e3817243efcbb7d9f15aa_b7b4e5dd90ed7a716b679d68312eaac1_2017-07-12-21-20-40.jpg"></p>
+<p>下面是需要填写的问题，根据自己情况填写，data地址填oss映射地址这里是<code>/cloud/data</code>后面端口可以默认。</p>
+<p><img src="https://images.liangs.me/bitcron/Notes/_image/d96a9c03a403f2c01f2605b7c73c4fa3_d8db42d0983b0be6fa60c8aa9731ade2_2017-07-12-21-24-38.jpg"></p>
+<p><img src="https://images.liangs.me/bitcron/Notes/_image/b987ebf1e88a34170a79880f66cfe125_4308bd8b67334ae30f792db6b6702aea_2017-07-12-21-27-09.jpg"></p>
+<p><img src="https://images.liangs.me/bitcron/Notes/_image/3fdc719e38b3baccd5ca1916c5c1cbd7_4f16071998821285abf5b22466e59748_2017-07-12-21-27-22.jpg"></p>
+<p><img src="https://images.liangs.me/bitcron/Notes/_image/82e57d1d7faa1f6db4d24fc50c54229e_4cea837ff4f043daa19f9dcecc227fbc_2017-07-12-21-27-52.jpg"></p>
+<h3 id="启动Seafile服务器"><a href="#启动Seafile服务器" class="headerlink" title="启动Seafile服务器"></a>启动Seafile服务器</h3><p>需要切到<code>/seafile-server-6.0.9</code>目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /root/guide/seafile-server-6.0.9</span><br><span class="line">ls -al</span><br><span class="line">./seafile.sh start</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://images.liangs.me/bitcron/Notes/_image/ac88be8579543caee52335f94c3bc7d3_4e7819c890f670c271025bfa46f9a584_2017-07-12-21-29-29.jpg"></p>
+<p>然后开始seahub。 默认端口为8000。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./seahub.sh start</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://images.liangs.me/bitcron/Notes/_image/e1ae6095d0dcf321e7576fd7e9f71cd3_be9f5c51adaad1fcc4fb03e11d00b441_2017-07-12-21-31-09.jpg"></p>
+<p>现在可以用浏览器访问了，地址栏输入相应的ip地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://123.207.155.108:8000/</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://images.liangs.me/bitcron/Notes/_image/8ab9aaf779596396dc6d3ad4896ac710_9ed22485a72166d4a3fcf6f5dfb19157_2017-07-12-21-32-42.jpg"></p>
+<p>登录后，您将看到seafile web管理页面。</p>
+<p><img src="https://images.liangs.me/bitcron/Notes/_image/2a66d00b40816c1f34818e60b0a6a5fc_45095ee4af3d434a14a69bd2c667abc8_2017-07-12-21-34-24.jpg"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="http://lxl520.com/index.php/archives/82/">使用lnmp+owncloud+ossfs+oss搭建属于自己的私有云盘</a><br><a target="_blank" rel="noopener" href="https://cherryml.com/archives/209.html">手动搭建属于自己的私有云-seafile安装教程</a><br><a target="_blank" rel="noopener" href="https://www.howtoing.com/seafile-ubuntu-14-04/">如何安装Seafile在Ubuntu 14.04（Trusty Tahr）</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/07/12/%E7%AC%94%E8%AE%B0/2017-07-11.%E4%BD%BF%E7%94%A8Seafile+ossfs+oss%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E7%A7%81%E6%9C%89%E4%BA%91%E7%9B%98/">使用Seafile+ossfs+oss搭建属于自己的私有云盘</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">undefined</a></p>
+        <p><span>发布时间:</span>2017-07-12, 21:37:28</p>
+        <p><span>最后更新:</span>2017-07-17, 13:31:37</p>
+        <!-- 不设置 backup: false 则默认显示 -->
+        
+         <p>
+            <span>更新历史:</span><i class="fa fa-github"></i>
+            <!-- 不同功能替换前面超链接即可，文件名不变 -->
+            <!-- 文件名生成: 2017-07-12.笔记/2017-07-11.使用Seafile+ossfs+oss搭建属于自己的私有云盘 -->
+            <a target="_blank" rel="noopener" href="https://github.com/wmwwmv/BlogBackup/blame/master/_posts/笔记/2017-07-11.使用Seafile+ossfs+oss搭建属于自己的私有云盘.md" title="顺序查看文章各部分修改记录" target = "_blank">Blame</a>,
+            <a target="_blank" rel="noopener" href="https://github.com/wmwwmv/BlogBackup/commits/master/_posts/笔记/2017-07-11.使用Seafile+ossfs+oss搭建属于自己的私有云盘.md" title="查看文章有关更新记录" target = "_blank">History</a><span class="raw">文本模式:</span><i class="fa fa-file-text-o"></i>
+            <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/wmwwmv/BlogBackup/master/_posts/笔记/2017-07-11.使用Seafile+ossfs+oss搭建属于自己的私有云盘.md" title="查看 & 下载文章 Markdown 原始文本" target = "_blank"> .md Raw</a>
+        </p>
+        
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/07/12/%E7%AC%94%E8%AE%B0/2017-07-11.%E4%BD%BF%E7%94%A8Seafile+ossfs+oss%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E7%A7%81%E6%9C%89%E4%BA%91%E7%9B%98/" title="使用Seafile+ossfs+oss搭建属于自己的私有云盘">https://www.zhiiker.com/2017/07/12/%E7%AC%94%E8%AE%B0/2017-07-11.%E4%BD%BF%E7%94%A8Seafile+ossfs+oss%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E7%A7%81%E6%9C%89%E4%BA%91%E7%9B%98/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://www.zhiiker.com/2017/07/12/%E7%AC%94%E8%AE%B0/2017-07-11.%E4%BD%BF%E7%94%A8Seafile+ossfs+oss%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E7%A7%81%E6%9C%89%E4%BA%91%E7%9B%98/　　作者: undefined" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/07/17/%E7%AC%94%E8%AE%B0/2017-07-17.fs.SyncWriteStream%20is%20deprecated/">
+                    fs.SyncWriteStream is deprecated
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/07/11/%E7%AC%94%E8%AE%B0/2017-07-11.%E5%8D%87%E7%BA%A7Seafile%E5%88%B0%E4%B8%93%E4%B8%9A%E7%89%88/">
+                    升级Seafile到专业版，更换端口，开机启动
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#VPS"><span class="toc-number">1.1.</span> <span class="toc-text">VPS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OSS"><span class="toc-number">1.2.</span> <span class="toc-text">OSS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85ossfs"><span class="toc-number">2.</span> <span class="toc-text">安装ossfs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Seafile"><span class="toc-number">3.</span> <span class="toc-text">安装Seafile</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Seafile%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB"><span class="toc-number">3.1.</span> <span class="toc-text">安装Seafile依赖关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8MySQL%E5%AE%89%E8%A3%85Seafile"><span class="toc-number">3.2.</span> <span class="toc-text">用MySQL安装Seafile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEMySQL%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">3.3.</span> <span class="toc-text">配置MySQL数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AEseafile%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">3.4.</span> <span class="toc-text">设置seafile服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8Seafile%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">3.5.</span> <span class="toc-text">启动Seafile服务器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-6 i,
+        .toc-level-6 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+
+    
+        <div class="addthis_sharing_toolbox"></div>
+    
+</div>
+
+
+
+
+
+
+
+    
+    <section id="comments" style="margin: 2em; padding: 2em; background: rgba(255, 255, 255, 0.5)">
+    <div id="vcomment" class="comment"></div>
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NTk1Ny8yMjQ2OA==">
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+
+                if (typeof LivereTower === 'function') { return; }
+
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</section>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/07/17/%E7%AC%94%E8%AE%B0/2017-07-17.fs.SyncWriteStream%20is%20deprecated/" title="上一篇: fs.SyncWriteStream is deprecated">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/07/11/%E7%AC%94%E8%AE%B0/2017-07-11.%E5%8D%87%E7%BA%A7Seafile%E5%88%B0%E4%B8%93%E4%B8%9A%E7%89%88/" title="下一篇: 升级Seafile到专业版，更换端口，开机启动">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/03/28/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97/2019-08-10.%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%8D%A2%E4%B8%BAlivere/">评论系统更换为livere</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/30/%E7%AC%94%E8%AE%B0/2019-08-30.%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%B5%8B%E8%AF%95%E8%84%9A%E6%9C%AC%E9%9B%86%E5%90%88/">服务器测试脚本集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/18/%E6%8B%BE%E6%91%98/2019-06-18.%E5%8D%AE%E8%A8%80%E6%97%A5%E5%87%BA%EF%BC%8C%E5%92%8C%E4%BB%A5%E5%A4%A9%E5%80%AA%E4%B8%A8%E3%80%8A%E5%AF%93%E8%A8%80%E3%80%8B%E7%AB%A0%E4%B8%80/">卮言日出，和以天倪丨《寓言》章一</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/22/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97/2019-04-22.%E5%8D%AE%E5%AE%A2%E6%9D%82%E4%BF%8E%E7%9A%84%E5%90%AB%E4%B9%89/">卮客杂俎的含义</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/17/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97/Press.one%20%E6%8E%88%E6%9D%83/">Press.one 授权</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/30/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97/2018-12-30.%E5%8D%9A%E5%AE%A2%E4%BF%AE%E5%A4%8D/">博客修复</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/13/%E7%AC%94%E8%AE%B0/2018-12-12.Seafile%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AEv3/">Seafile安装与配置v3</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/09/%E7%AC%94%E8%AE%B0/2018-12-09.Hexo%E5%8D%9A%E5%AE%A2%E5%8D%87%E7%BA%A7%E5%B0%8F%E8%AE%B0/">Hexo博客升级小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/18/%E7%AC%94%E8%AE%B0/2018-11-18.Atom%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">Atom的一些问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/04/%E7%AC%94%E8%AE%B0/2018-11-04.%E7%94%A8Atom%E5%86%99LaTeX%E6%96%87%E6%A1%A3/">用Atom写LaTeX文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/03/%E7%AC%94%E8%AE%B0/2018-11-03.%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">内网穿透</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/11/%E7%BB%93%E7%BB%B3%E7%BA%AA/2018-08-11.%E6%96%B0%E7%9A%84%E5%90%8D%E5%AD%97%E2%80%94%E8%B1%A1%E7%BD%94%E5%8D%AE%E4%BA%BA/">新的名号—象罔卮人(卮客)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/%E7%AC%94%E8%AE%B0/2018-08-07.%E9%85%8D%E7%BD%AEIPython%20Notebook%E6%8F%90%E4%BE%9B%E9%9D%9E%E6%9C%AC%E5%9C%B0%E8%AE%BF%E9%97%AE/">配置IPython Notebook提供非本地访问</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/%E7%AC%94%E8%AE%B0/2018-08-06.Ubuntu%E4%B8%8B%E5%AE%89%E8%A3%85pyenv%E3%80%81IPython%20Notebook%E5%92%8C%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97%E5%8C%85%E7%9A%84%E8%BF%87%E7%A8%8B%E6%80%BB%E7%BB%93/">Ubuntu下安装pyenv、IPython  Notebook和科学计算包的过程总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/11/%E7%AC%94%E8%AE%B0/2018-04-11.%E4%B8%AA%E4%BA%BA%E8%AF%BB%E4%B9%A6%E7%BB%8F%E5%8E%86/">个人读书经历</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/%E7%AC%94%E8%AE%B0/2017-08-02.%E5%90%8C%E6%97%B6%E6%8A%8A%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E5%88%B0%E4%B8%A4%E4%B8%AAgit%E4%BB%A3%E7%A0%81%E6%89%98%E7%AE%A1%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A/">同时把代码提交到两个git代码托管的服务器上</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/01/%E7%AC%94%E8%AE%B0/2017-08-01.%E4%BD%BF%E7%94%A8cpuminer%E5%9C%A8Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%94%A8CPU%E6%8C%96%E7%9F%BF/">使用cpuminer在Linux环境下用CPU挖矿</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/27/%E7%AC%94%E8%AE%B0/2017-07-27.%E8%A7%A3%E5%86%B3Hexo%20deploy%E5%A4%B1%E8%B4%A5/">解决Hexo deploy失败</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/%E7%AC%94%E8%AE%B0/2017-07-19.Dropbox%20+%20VPS%20+%20Incrond+Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B0%8F%E8%AE%B0/">Dropbox + VPS + Incrond+Hexo搭建博客小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/17/%E7%AC%94%E8%AE%B0/2017-07-17.%E5%B0%86%E4%B8%8D%E5%90%8C%E5%9C%B0%E6%96%B9%E6%96%87%E4%BB%B6%E5%A4%B9%E5%90%8C%E6%AD%A5%E5%88%B0Dropbox/">将不同地方文件夹同步到Dropbox</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/17/%E7%AC%94%E8%AE%B0/2017-07-17.fs.SyncWriteStream%20is%20deprecated/">fs.SyncWriteStream is deprecated</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/12/%E7%AC%94%E8%AE%B0/2017-07-11.%E4%BD%BF%E7%94%A8Seafile+ossfs+oss%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E7%A7%81%E6%9C%89%E4%BA%91%E7%9B%98/">使用Seafile+ossfs+oss搭建属于自己的私有云盘</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/11/%E7%AC%94%E8%AE%B0/2017-07-11.%E5%8D%87%E7%BA%A7Seafile%E5%88%B0%E4%B8%93%E4%B8%9A%E7%89%88/">升级Seafile到专业版，更换端口，开机启动</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/20/%E7%AC%94%E8%AE%B0/2017-03-20.JSP%E4%B8%8EServlet%E4%B9%8B%E9%97%B4%E4%BC%A0%E5%80%BC/">JSP与Servlet之间传值</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/19/%E7%AC%94%E8%AE%B0/2017-03-19.Linux%20%E4%B8%8B%E6%89%A7%E8%A1%8C%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%20crontab%20%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/">Linux 下执行定时任务 crontab 命令详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/22/%E7%AC%94%E8%AE%B0/2017-02-22.%E4%B8%AA%E4%BA%BA%E5%90%8D%E7%A7%B0-%E5%BC%95%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E5%87%BA%E5%A4%84/">个人名称、引用的一些出处</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/23/%E7%AC%94%E8%AE%B0/2016-11-23.oracle%E4%B8%AD%E5%85%B3%E4%BA%8E%E5%8D%95%E5%BC%95%E5%8F%B7%E5%92%8C%E5%8F%8C%E5%BC%95%E5%8F%B7%E7%9A%84%E9%97%AE%E9%A2%98/">oracle中关于单引号和双引号的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/16/%E7%AC%94%E8%AE%B0/2016-11-16.%E7%AC%94%E8%AE%B0%E7%BC%96%E8%BE%91%E5%B7%A5%E5%85%B7%E7%9A%84%E6%9C%80%E5%90%8E%E9%80%89%E6%8B%A9/">最终的写作解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/16/%E7%AC%94%E8%AE%B0/2016-11-16.use_case-when_implement_if-then-else_logic/">使用case-when实现if-then-else逻辑</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/29/%E7%AC%94%E8%AE%B0/2016-09-29.%E5%A6%82%E4%BD%95%E5%9C%A8Linux%E4%B8%AD%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%BA%A4%E6%8D%A2%E6%96%87%E4%BB%B6/">如何在Linux中创建一个交换文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/28/%E7%AC%94%E8%AE%B0/2016-09-28.Python%E4%B8%AD%E7%9A%84%E6%B3%A8%E9%87%8A/">Python中的注释</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/28/%E7%AC%94%E8%AE%B0/2016-09-28.%E6%9C%89%E5%85%B3%E7%AC%94%E8%AE%B0%E7%9A%84%E7%AE%A1%E7%90%86/">有关笔记管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/23/%E7%AC%94%E8%AE%B0/2016-09-23.Hexo%E5%B0%8F%E6%8A%80%E5%B7%A7/">Hexo小技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/23/%E7%AC%94%E8%AE%B0/2016-09-23.CMD%E5%91%BD%E4%BB%A4%E8%A1%8C/">CMD命令行</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/23/%E7%AC%94%E8%AE%B0/2016-09-23.%E5%9F%BA%E7%A1%80Git%E6%8A%80%E8%83%BD/">基础Git技能</a></li><li class="post-list-item"><a class="post-list-link" href="/DiningPhilosophersProblem">哲学家就餐问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/21/AC++/2016-09-21.%E5%A4%A7%E6%95%B4%E6%95%B0.%E5%90%8C%E4%BD%99%E5%85%B3%E7%B3%BB/">大整数、同余关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/18/AC++/2016-09-18.ICPC2016%E6%B2%88%E9%98%B3%E5%8C%BA%E5%9F%9F%E7%BD%91%E7%BB%9C%E8%B5%9B/">ICPC2016沈阳区域网络赛</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/17/AC++/2016-09-17.ICPC2016%E9%9D%92%E5%B2%9B%E5%8C%BA%E5%9F%9F%E7%BD%91%E7%BB%9C%E8%B5%9B/">ICPC2016青岛区域网络赛</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/05/%E7%AC%94%E8%AE%B0/2016-09-05.Linux%E4%B8%8B%E4%BD%BF%E7%94%A8SSH%E8%BF%9E%E6%8E%A5Windows/">Linux下使用SSH连接Windows</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/04/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97/%E4%B9%A6%E9%98%81/">书阁</a></li><li class="post-list-item"><a class="post-list-link" href="/Hexo%E6%8F%90%E4%BA%A4%E5%88%B0Github%E9%94%99%E8%AF%AF">Hexo提交到Github错误</a></li><li class="post-list-item"><a class="post-list-link" href="/%E7%B4%A0%E6%8B%93%E7%BD%91%E7%AB%99%E7%9A%84%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7">素拓网站的一些技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/Oracle%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD">Oracle安装与卸载</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/30/%E7%BB%93%E7%BB%B3%E7%BA%AA/2016-07-30.%E5%8E%BB%E7%94%9F%E6%B4%BB%EF%BC%8C%E5%8E%BB%E7%8A%AF%E9%94%99%EF%BC%8C%E5%8E%BB%E8%B7%8C%E5%80%92%EF%BC%8C%E5%8E%BB%E8%83%9C%E5%88%A9%EF%BC%8C%E5%8E%BB%E7%94%A8%E7%94%9F%E5%91%BD%E5%86%8D%E5%88%9B%E7%94%9F%E5%91%BD/">去生活，去犯错，去跌倒，去胜利，去用生命再创生命</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/30/%E7%AC%94%E8%AE%B0/2016-07-30.Hexo%E4%B8%80%E4%BA%9B%E8%AF%AD%E6%B3%95/">Hexo一些语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/30/%E7%AC%94%E8%AE%B0/2016-07-30.%E9%AB%98%E5%88%86%E5%B1%8F%E4%B8%8B%E5%AD%97%E4%BD%93%E6%98%BE%E7%A4%BA%E7%9A%84%E6%9C%80%E7%BB%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">高分屏下字体显示的最终解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/28/%E7%AC%94%E8%AE%B0/2016-07-28.Ubuntu%E4%B8%8BAnaconda%E5%AE%89%E8%A3%85/">Ubuntu下Anaconda安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/27/%E7%AC%94%E8%AE%B0/2016-07-07.Sublime%E4%BE%A7%E8%BE%B9%E6%A0%8F%E4%B9%B1%E7%A0%81%E5%92%8C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%E6%98%BE%E7%A4%BA%E4%B8%8D%E6%B8%85%E6%99%B0/">Sublime侧边栏乱码和有道云笔记显示不清晰</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/27/AC++/2016-07-27.Ubuntu%E4%B8%8BSublimeC%E5%92%8CCpp%E9%85%8D%E7%BD%AE/">Ubuntu下SublimeC&C++配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/27/AC++/2016-07-27.%E5%90%AB%E4%B9%89/">含义</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/26/%E5%BB%BA%E7%AB%99%E6%97%A5%E5%BF%97/%E7%AB%99%E7%82%B9%E8%BF%81%E7%A7%BB/">站点迁移</a></li><li class="post-list-item"><a class="post-list-link" href="/site-building-log">建站日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/%E6%8B%BE%E6%91%98/2016-07-07.%E5%B9%BF%E7%94%B5%E6%80%BB%E5%B1%80,%E4%B8%AD%E6%96%87%E5%9F%9F%E5%90%8D/">广电总局 中文域名</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/07/%E6%8B%BE%E6%91%98/2016-07-07.%E5%A4%A7%E5%9B%BD%E5%9B%BD%E6%B0%91%E7%9A%84%E6%83%85%E6%80%80/">大国国民的情怀</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/06/%E6%8B%BE%E6%91%98/2016-07-06.%E6%B0%B8%E8%BF%9C%E4%BF%9D%E6%8C%81%E5%A5%BD%E5%A5%87%E5%BF%83/">永远保持好奇心</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/27/%E7%AC%94%E8%AE%B0/2016-06-27.%E5%90%84%E7%A7%8D%E5%A5%87%E8%91%A9%E4%B8%AD%E6%96%87%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">各种奇葩中文编程语言</a></li><li class="post-list-item"><a class="post-list-link" href="/ShadowsocksIPV4n6">Shadowsocks IPV4&IPV6服务器端配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/13/%E6%8B%BE%E6%91%98/2016-06-13.%E7%AC%AC%E4%B8%80%E9%83%A8%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%86%99%E7%9A%84%E7%94%B5%E5%BD%B1/">第一部人工智能写的电影</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/%E7%AC%94%E8%AE%B0/2016-05-11.EclipseChe/">EclipseChe</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/%E7%AC%94%E8%AE%B0/2016-05-11.%E4%BA%91%E6%95%B0%E6%8D%AE%E5%BA%93/">云数据库</a></li><li class="post-list-item"><a class="post-list-link" href="/the-solution-for-writing">写作需求的解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/%E6%8B%BE%E6%91%98/2015-10-11.%E6%96%87%E8%A8%80%E6%96%87Perl%E7%BC%96%E7%A8%8B%E5%86%99%E8%AF%97by%E5%94%90%E5%87%A4(%E5%94%90%E5%AE%97%E6%B1%89)/">唐凤(唐宗汉)文言文Perl编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/10/%E6%8B%BE%E6%91%98/2015-10-10.The%20Secret%20World%20of%20WDMA%20Sites/">The Secret World of WDMA Sites</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script></div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2014-2021 卮客
+                <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn">辽ICP备15012582-16</a>
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            
+            </div>
+            <div class="footer">
+                <a target="_blank" rel="noopener" href="https://www.upyun.com">
+                    <img src="./images/upyun-logo-60.png" />
+                </a>
+            <br/>提供支持
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+    
+<script src="/js/GithubRepoWidget.js"></script>
+
+
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 6;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-131531271-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+             github: ".github-widget a", 
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+    <script>
+        var originTitle = document.title;
+        var titleTime;
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                clearTimeout(titleTime);
+            }
+            else {
+                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                titleTime = setTimeout(function() {
+                    document.title = originTitle;
+                }, 2000);
+            }
+        })
+    </script>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
